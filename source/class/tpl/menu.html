@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<link rel="stylesheet" type="text/css" href="{$dir}css/css.css" />
+
+<script type="text/javascript" src="{$dir}js/jquery.min.js"></script>
+<script type="text/javascript">
+
+var maxmid = '{$maxmid}';
+
+function addchildmenu(id)
+{
+	maxmid = parseInt(maxmid) + 1;
+	var cmenu = '<div class="childmenu">';
+	cmenu += '<span class="menuicon"><img src="{$dir}img/coin222.png"/></span>';
+	cmenu += '<input type="hidden" class="minput" name="minfo['+maxmid+'][mpid]" value="'+id+'"/>';
+	cmenu += '<span><input type="text" class="mtinput" name="minfo['+maxmid+'][mtitle]" value=""/></span>';
+	cmenu += '<span><input type="text" class="muinput" name="minfo['+maxmid+'][murl]" value=""/></span></div>';
+	$("#mainmenu"+id).append(cmenu);	
+}
+
+function addmainmenu()
+{
+	maxmid = parseInt(maxmid) + 1;
+	var mmenu = '<div class="mainmenu">';
+	mmenu += '<input type="hidden" class="minput" name="minfo['+maxmid+'][mpid]" value="0"/>';
+	mmenu += '<span><input type="text" class="mtinput" name="minfo['+maxmid+'][mtitle]" value=""/></span>';
+	mmenu += '<span><input type="text" class="muinput" name="minfo['+maxmid+'][murl]" value=""/></span></div>';
+	$("#menulist").append(mmenu);	
+}
+
+function syncmenu()
+{
+	$.post("index.php?mod=admin&act=createmenu",{},function(res){
+		var info = eval("("+res+")");
+		if(info.errcode>0){
+			alert(info.errmsg);
+		}else{
+			alert("恭喜，已成功同步于公众号！");
+		}
+		
+	});
+}
+
+</script>
+</head>
+
+<body>
+	<div id="pageAll">
+		<div class="pageTop">
+			<div class="page pos">
+				当前位置：首页&nbsp;-&nbsp;系统管理&nbsp;-&nbsp;微信菜单管理
+			</div>
+		</div>
+
+		<div class="page">
+			<!-- user页面样式 -->
+			<div class="connoisseur">
+				<!-- user 表格 显示 -->
+				<div class="conShow">
+				<div class="tableheader" style="margin-bottom:0px !important">
+				<span class="lheader"><label>技巧提示</label></span>
+				</div>
+				<div class="tsbox">
+					<div class="tsrow">使用此功能前请先确定您的公众号是否拥有“自定义菜单”服务，只有拥有此服务的公众号才可使用此功能</div>
+					<div class="tsrow">您可以设置最多 3 个菜单，每个菜单可以创建最多 7 个子菜单</div>
+					<div class="tsrow">如果您希望在菜单中添加答题抽奖访问功能，请在“菜单KEY值 / 网页链接”中填写KEY值：DATICHOUJIANG</div>
+					<div class="tsrow">菜单发布后，由于微信客户端缓存，需要24小时微信客户端才会展现出来</div>
+				</div>
+					
+					<div class="menutitle">
+						<span class="mttlt">菜单标题</span><span class="mutlt">菜单KEY值 / 网页链接</span>
+					</div>
+					
+					<div class="uclear"></div>
+					
+					<form action="index.php" method="post">
+					<div class="menuarea" id="menulist">
+						{$i = 0}
+						{foreach from=$menu item="infos" name="foo"}
+						<div class="mainmenu" >{$i = $i+1}
+							<input type="hidden" class="minput" name="minfo[{$infos['mid']}][mid]" value="{$infos['mid']}"/>
+							<input type="hidden" class="minput" name="minfo[{$infos['mid']}][mpid]" value="{$infos['mpid']}"/>
+							<span><input type="text" class="mtinput" name="minfo[{$infos['mid']}][mtitle]" value="{$infos['mtitle']}"/></span>
+							<span><input type="text" class="muinput" name="minfo[{$infos['mid']}][murl]" value="{$infos['murl']}"/></span>
+							<span><a href="javascript:;" onclick="addchildmenu({$infos['mid']})">+添加子菜单</a>  |  <a href="index.php?mod=admin&act=delmenu&mid={$infos['mid']}">-删除</a> </span>
+						</div>
+						
+						<div id="mainmenu{$infos['mid']}">
+						{if $infos['mhasmenu'] eq 1}
+						{foreach from=$infos.menu item="info" name="mu"}
+						<div class="childmenu">{$i = $i+1}
+							<span class="menuicon"><img src="{$dir}img/coin222.png"/></span>
+							<input type="hidden" class="minput" name="minfo[{$info['mid']}][mid]" value="{$info['mid']}"/>
+							<input type="hidden" class="minput" name="minfo[{$info['mid']}][mpid]" value="{$info['mpid']}"/>
+							<span><input type="text" class="mtinput" name="minfo[{$info['mid']}][mtitle]" value="{$info['mtitle']}"/></span>
+							<span><input type="text" class="muinput" name="minfo[{$info['mid']}][murl]" value="{$info['murl']}"/></span>
+							<span><a href="index.php?mod=admin&act=delmenu&mid={$info['mid']}">-删除</a> </span>
+						</div>
+						{/foreach}
+						{/if}
+						</div>
+						
+						{/foreach}
+						
+					</div>
+				
+					<a href="javascript:;" style="height:39px;line-height:39px;color:#333;padding:20px;text-decoration:underline" onclick="addmainmenu()">+添加主菜单</a>
+					<input type="hidden" name="act" value="savemenu"/>
+					<input type="hidden" name="mod" value="admin"/>
+					<div class="bbD">
+							<p class="bbDP">
+								<input class="btn_ok btn_yes" type="submit" value="保存菜单"/>
+								<a href="index.php?mod=admin&act=createmenu"><span class="btn_ok btn_yes">发布菜单</span></a>
+							</p>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+</body>
+
+</html>

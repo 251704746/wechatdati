@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>头部</title>
+<link rel="stylesheet" type="text/css" href="{$dir}css/public.css" />
+<script type="text/javascript" src="{$dir}js/jquery.min.js"></script>
+<script type="text/javascript" src="{$dir}js/public.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		function time() {
+			var date = new Date();
+			var n = date.getFullYear();
+			var y = ((date.getMonth()+1) < 10)?'0'+(date.getMonth()+1):(date.getMonth()+1);
+			var t = ((date.getDate()) < 10)?'0'+(date.getDate()):(date.getDate());
+			var h = ((date.getHours()) < 10)?'0'+(date.getHours()):(date.getHours());
+			var m = ((date.getMinutes()) < 10)?'0'+(date.getMinutes()):(date.getMinutes());
+			var s = ((date.getSeconds()) < 10)?'0'+(date.getSeconds()):(date.getSeconds());
+
+			$('.sj .time').html(n+'年'+y+'月'+t+'日 '+h+":"+m+":"+s);
+
+		}
+		time();
+		setInterval(time, 1000);
+		});
+	</script>
+
+</head>
+
+<body>
+	<!-- 头部 -->
+	<div class="head">
+		<div class="headL">
+			<img class="headLogo" src="{$dir}img/logo.png"/>
+		</div>
+		<div class="headR">
+			<div class="sj">
+				当前系统时间：
+				<span class="time"></span>
+				</div>
+			<div><span style="color:#FFF">欢迎：{$username}</span> <a class="logout" href="index.php?mod=admin&act=logout" rel="external">【退出】</a></div>
+		</div>
+	</div>
+</body>
+</html>

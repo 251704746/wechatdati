@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>修改密码</title>
+<link rel="stylesheet" type="text/css" href="{$dir}css/css.css" />
+<script type="text/javascript" src="{$dir}js/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="ueditor/ueditor.all.min.js"> </script>
+<script type="text/javascript">
+function checkvalue()
+{
+	var sid = $("#sid").val();
+	var aid = $("#aid").val();
+	var stype = $("#stype").val();
+	var stitle = baidu.editor.getEditor('myEditor').getContent();
+	var soption1 = $("#soption1").val();
+	var soption2 = $("#soption2").val();
+	var soption3 = $("#soption3").val();
+	var soption4 = $("#soption4").val();
+	var soption5 = $("#soption5").val();
+	var soption6 = $("#soption6").val();
+	var sanswer = $("#sanswer").val();
+	var sanswers = $("#sanswers").val();
+
+	if(aid == ""){
+		showform("请选择活动");
+		return false;
+	}if(stype == ""){
+		showform("请选择题型");
+		return false;
+	}if(stitle == ""){
+		showform("请输入标题");
+		return false;
+	}if(soption1 == ""){
+		showform("请输入备选答案一");
+		return false;
+	}if(soption2 == ""){
+		showform("请输入备选答案二");
+		return false;
+	}if(sanswer == ""){
+		showform("请输入答案");
+		return false;
+	}if(sanswers == ""){
+		showform("请输入答案说明");
+		return false;
+	}
+}
+</script>
+</head>
+<body>
+	<div id="pageAll">
+		<div class="pageTop">
+			<div class="page pos">
+				当前位置：首页&nbsp;-&nbsp;题库管理&nbsp;-&nbsp;题库列表
+			</div>
+		</div>
+		<div class="page ">
+		<form action="index.php" method="post">
+			<input type="hidden" id="mod" name="mod" value="admin"/>
+			<input type="hidden" id="act" name="act" value="action_subject"/>
+			<div class="bacen">
+				<input type="hidden" id="sid" name="sid" value="{$subject['sid']}">
+				<div class="bbD">
+					<span class="bcname">活动主题：</span><span class="bcvalue"><select class="input3" name="aid"
+						 id="aid" onfocus="this.style='border:1px solid #27A9E3'" onblur="this.style='border:1px solid #DCDEE0'" > 
+						 {foreach from=$activity item="info"}
+						 <option value="{$info.aid}" {if $info.aid eq $subject['aid']}selected{/if}>{$info.atitle}</option>
+						 {/foreach}
+					</select>	 
+				    </span>
+				</div>
+				<div class="bbD">
+					<span class="bcname">试题类型：</span><span class="bcvalue"><select class="input3" name="stype"
+						 id="stype" onfocus="this.style='border:1px solid #27A9E3'" onblur="this.style='border:1px solid #DCDEE0'" > 
+						 <option value="1" {if $subject['stype'] eq 1 }selected{/if}>单选</option>
+						 <option value="2" {if $subject['stype'] eq 2 }selected{/if}>多选</option>
+					</select>	 </span>
+				</div>
+			
+				<div class="bbD">
+					<span class="bcname">试题标题：</span><span class="bcvalues">
+					<div id="myEditor" name="stitle">
+					<script type="text/javascript">
+						var editor = new baidu.editor.ui.Editor({
+							initialContent: '{$subject["stitle"]}',
+							initialFrameHeight:320
+						});
+						editor.render("myEditor");
+					
+					</script>
+					</div></span>
+				</div>
+				<div class="bbD">
+					<span class="bcname">第一选项：</span><span class="bcvalue"><input type="text" class="input3" value="{$subject['soption1']}"
+					id="soption1" name="soption1" onfocus="this.style='border:1px solid #27A9E3'" onblur="this.style='border:1px solid #DCDEE0'" />  A 选项</span>
+				</div>
+				<div class="bbD">
+					<span class="bcname">第二选项：</span><span class="bcvalue"><input type="text" class="input3" value="{$subject['soption2']}"
+						 id="soption2" name="soption2" onfocus="this.style='border:1px solid #27A9E3'" onblur="this.style='border:1px solid #DCDEE0'" /> B 选项</span>  
+				</div>
+				<div class="bbD">
+					<span class="bcname">第三选项：</span><span class="bcvalue"><input type="text" class="input3" value="{$subject['soption3']}"
+						 id="soption3" name="soption3" onfocus="this.style='border:1px solid #27A9E3'" onblur="this.style='border:1px solid #DCDEE0'" /> C 选项</span>  
+				</div>
+				<div class="bbD">
+					<span class="bcname">第四选项：</span><span class="bcvalue"><input type="text" class="input3" value="{$subject['soption4']}"
+						 id="soption4" name="soption4" onfocus="this.style='border:1px solid #27A9E3'" onblur="this.style='border:1px solid #DCDEE0'" /> D 选项</span>
+				</div>
+				<div class="bbD">
+					<span class="bcname">第五选项：</span><span class="bcvalue"><input type="text" class="input3" value="{$subject['soption5']}"
+						 id="soption5" name="soption5" onfocus="this.style='border:1px solid #27A9E3'" onblur="this.style='border:1px solid #DCDEE0'"/> E 选项</span>
+				</div>
+				<div class="bbD">
+					<span class="bcname">第六选项：</span><span class="bcvalue"><input type="text" class="input3" value="{$subject['soption6']}"
+						 id="soption6" name="soption6" onfocus="this.style='border:1px solid #27A9E3'" onblur="this.style='border:1px solid #DCDEE0'" /> F 选项</span>
+				</div>
+				<div class="bbD">
+					<span class="bcname">参考答案：</span><span class="bcvalue"><input type="text" class="input3" value="{$subject['sanswer']}"
+						 id="sanswer" name="sanswer" onfocus="this.style='border:1px solid #27A9E3'" onblur="this.style='border:1px solid #DCDEE0'" /> 若答案为第一选项，则填A,若多选第一选项和第二选项则填AB;</span>
+				</div>
+				
+				<div class="bbD">
+					<span class="bcname">答案解析：</span><span class="bcvalues">
+					<textarea type="text" class="textarea" id="sanswers" name="sanswers" 
+					onfocus="this.style='border:1px solid #27A9E3'" onblur="this.style='border:1px solid #DCDEE0'">{$subject['sanswers']}</textarea></span>
+				</div>
+				
+				<div class="bbD">
+					<p class="bbDP">
+						<input type='submit' class="btn_ok btn_yes" onclick="return checkvalue()" value="提交">
+					</p>
+				</div>
+			</div>
+
+			</form>
+		</div>
+	</div>
+	
+{include file="info.html"}
+</body>
+
+</html>

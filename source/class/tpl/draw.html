@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>答题管理</title>
+<link rel="stylesheet" type="text/css" href="{$dir}css/css.css" />
+<script type="text/javascript" src="{$dir}js/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="js/page.js" ></script> -->
+<script type="text/javascript">
+function chaxun()
+{
+	var susername = $("#susername").val();
+	window.location.href = "index.php?mod=admin&act=draw&aid={$aid}&susername="+susername;
+}
+
+function receive(did)
+{
+	$.post("index.php?mod=admin&act=receive_prize",{
+		did:did
+	},function(res){
+		$("#datime"+did).html(res);
+		$("#handle"+did).html("已领取");
+	});
+}
+</script>
+</head>
+
+<body>
+	<div id="pageAll">
+		<div class="pageTop">
+			<div class="page pos">
+				当前位置：首页&nbsp;-&nbsp;会员管理&nbsp;-&nbsp;用户抽奖
+			</div>
+		</div>
+
+		<div class="page">
+			<!-- user页面样式 -->
+			<div class="connoisseur">
+				<!-- user 表格 显示 -->
+				<div class="conShow">
+				
+				<div class="tableheader">
+				<span class="lheader"><label>会员名称：</label><input type="text" id="susername" class="input3" value="{$susername}"/>
+				<button class="btn" onclick="chaxun()">查询</button></span>
+				<span class="rheader"><a href="?mod=admin&act=export_drawlist&aid={$aid}"><div class="ubtn">导出</div></a></span>
+				</div>
+				
+					<table border="1" cellspacing="0" cellpadding="0">
+						<tr>
+							<td width="5%" class="tdColor tdC">序号</td>
+							<td width="10%" class="tdColor">用户名</td>
+							<td width="10%" class="tdColor">真实姓名</td>
+							<td width="10%" class="tdColor">联系电话</td>
+							<td width="15%" class="tdColor">获得奖品</td>
+							<td width="15%" class="tdColor">抽奖时间</td>
+							<td width="15%" class="tdColor">领取时间</td>
+							<td width="15%" class="tdColor">操作</td>
+						</tr>
+						{foreach from=$draw item="infos"}
+						<tr height="40px">
+							<td>{$infos['did']}</td>
+							<td>{$infos['username']}</td>
+							<td>{$infos['name']}</td>
+							<td>{$infos['telphone']}</td>
+							<td>{$infos['dname']}</td>
+							<td>{$infos['dtime']}</td>
+							<td id="datime{$infos['did']}">{$infos['datimes']}</td>	
+							<td id="handle{$infos['did']}">{if $infos['datime'] == ""}
+								<a href="javascript:;" onclick="receive({$infos['did']})">领取奖品</a>{else}
+								已领取
+								{/if}
+							</td>
+						</tr>
+						{/foreach}
+					</table>
+					<div class="page_area">
+
+					<span class="pageinfo">共 <font color="#68abc6">{$filter["total"]}</font> 条记录，分 <font color="#68abc6">{$filter["tpage"]}</font> 
+
+					页，当前第 <font color="#68abc6">{$filter["cpage"]}</font> 页</span>
+					<span class="pagebtn">
+					
+					<a href="?mod=admin&act=draw&cpage=1&aid={$aid}">首页</a> 
+					<a href="?mod=admin&act=draw&cpage={$filter['fpage']}&aid={$aid}">上一页</a> 
+					<a href="?mod=admin&act=draw&cpage={$filter['npage']}&aid={$aid}">下一页</a>
+					<a href="?mod=admin&act=draw&cpage={$filter['tpage']}&aid={$aid}">末页</a>
+					 
+					 </span></div>
+				</div>
+				<!-- user 表格 显示 end-->
+			</div>
+			<!-- user页面样式end -->
+		</div>
+
+	</div>
+
+
+</body>
+
+</html>

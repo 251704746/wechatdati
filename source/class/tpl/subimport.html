@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<link rel="stylesheet" type="text/css" href="{$dir}css/css.css" />
+<script type="text/javascript" src="{$dir}js/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="ueditor/ueditor.all.min.js"> </script>
+<script type="text/javascript">
+function filterimportinfo()
+{
+	var subfile = $("#subfile").val();
+
+	if(subfile == ""){
+		showform("请先选择要上传的excel文件");
+		return false;
+	}else{
+		showform("正在导入，请稍后......");
+	}
+}
+</script>
+</head>
+<body>
+<div id="pageAll">
+	<div class="pageTop">
+		<div class="page pos">
+			当前位置：首页&nbsp;-&nbsp;题库管理&nbsp;-&nbsp;题库列表
+		</div>
+	</div>
+
+		<div class="page">
+		<form method="post" action="index.php" enctype="multipart/form-data" onSubmit="return filterimportinfo()">   
+			<div class="bbD">
+			<span class="bcname">导入文件</span><span class="bcvalue"><a href="javascript:;" onclick="$('input[id=fcattachment]').click()" >
+			<input name="subfile" id="subfile" type="text" style="background:#ddd" class="input3" readOnly="true" placeholder="点击上传文件" /></a>&nbsp;&nbsp;导入文件，必填</span>
+			<input name="fcattachment" id="fcattachment" type="file" style="display:none" class="input3"/>
+			<input name="mod" id="mod" type="hidden" class="input3" value="admin"/>
+			<input name="act" id="act" type="hidden" class="input3" value="action_subimport"/>
+			</div>
+			<div class="bbD">
+			<p class="bbDP">
+				<input class="btn_ok btn_yes" type="submit" value="确认导入"/>
+			</p>
+			</div>
+		</form>
+		<div class="udescribes">
+			<div class="desc" style="line-height:39px;">注意：导入的文件必须为excel文件，文件内容需按照以下格式：</div>
+			
+			<img src="{$dir}img/excel.jpg?v" style="width:100%;"/>
+		</div>
+	</div>
+	
+</div>
+<script type="text/javascript">
+
+$('input[id=fcattachment]').change(function() {
+   $('#subfile').val($(this).val());
+});
+
+</script>
+{include file="info.html"}
+
+</body>
+
+</html>

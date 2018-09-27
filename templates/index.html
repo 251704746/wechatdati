@@ -1,0 +1,72 @@
+{include file="header.html"} 
+<script>
+	/*不同分辨率手机加载*/
+	var userScalable = "no";
+	var ins = "";
+	(function () {
+		if (window.devicePixelRatio === 1.5) {
+			userScalable = "yes";
+			ins = "initial-scale=0.5"
+		}
+		var text = "<meta content='" + ins + ", target-densitydpi=device-dpi, width=640,user-scalable=" + userScalable + "' name='viewport'>";
+		document.write(text);
+	})();
+	
+
+function checktime(){
+	var myDate = new Date().getTime();	
+
+	var sTime = "{$activity['astarttime']}";
+	var eTime = "{$activity['aendtime']}";
+	var atest = "{$activity['artnum']}";
+	var astest = "{$activity['astnum']}";
+	var dtest = "{$dtest}";
+	var test = "{$test}";
+	
+	var timestamp1 = Date.parse(new Date(sTime));
+	var timestamp2 = Date.parse(new Date(eTime));
+
+	if(myDate <  timestamp1 ){
+		show_popuptip("本活动未开始，活动将在 <font color='red'>"+sTime+"</font> 开始,敬请关注！");return ;
+	}else if(myDate >  timestamp2 ){
+		show_popuptip("本活动已在 <font color='red'>"+eTime+"</font> 结束,谢谢关注！");return ;
+	}
+
+	if(eval(dtest) >= eval(atest)){
+		show_popuptip("本活动每天每人可答题 "+ atest+" 次，您已达上限，请明天再来！");return ;
+	}
+	
+	if(eval(test) >= eval(astest)){
+		show_popuptip("本活动每人最多可答题 "+ astest+" 次，您已达上限，谢谢参与！");return ;
+	}
+	
+	window.location.href="index.php?mod=index&act=subject";
+
+}
+
+</script>
+
+<div class="w640">  
+	<div id="h1">
+		<header>
+			<div class="mtitle">{$activity['atitle']}</div>
+			
+		</header>
+		<div class="hm_text">
+			<div class="mtime">开始时间：{$activity['astarttime']}</div>
+			<div class="mtime">结束时间：{$activity['aendtime']}</div>
+		</div>
+	</div>
+	<a href="javascript:;" onclick="checktime()"><div class="startbtn">
+	<img src="{$dir}images/sbtn.png"/>
+	<label class="sdesc">点击这里开始答题</label>
+	</div></a>
+	
+</div>
+
+
+{include file="nav.html"}
+{include file="footer.html"}
+<div class="organization">{$activity['aorganization']}</div>
+</body>
+</html>

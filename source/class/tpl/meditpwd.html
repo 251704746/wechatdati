@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>密码修改</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<link rel="stylesheet" type="text/css" href="{$dir}css/css.css?v=11" />
+<script type="text/javascript" src="{$dir}js/jquery.min.js"></script>
+
+<script type="text/javascript">
+function checkvalue()
+{
+	var mname = $("#mname").val();
+	var mpasswd = $("#mpasswd").val();
+	if(mpasswd == ""){
+		showform("请输入要修改的密码");
+		return false;
+	}
+	
+	$.post("index.php?act=action_meditpwd&mod=admin",{
+		"mname":mname,"mpasswd":mpasswd
+	},function(res){
+		showform("密码修改成功","index.php?mod=admin&act=mcenter");	
+	});
+}
+</script>
+
+</head>
+<body style="background:#f9f9f9">
+<div id="header">
+<a href="javascript:history.go(-1);" class="back"></a><h1 class="title">修改密码</h1>
+</div>
+<section id="main">
+<div class="lrbox_lts"></div>
+  <div class="logbox">
+	<table class="wwFormTable">
+      <ul>
+        <li><label class="text_label">用户名称</label><input type="text" class="text_input"  id="mname" name="mname" value="{$mname}" readonly placeholder="用户名称"><div class="uclear"></div></li>
+        <li><label class="text_label">用户密码</label><input type="password" class="text_input" value="" name="mpasswd" id="mpasswd" placeholder="用户密码"><div class="uclear"></div></li>
+		<input type="hidden" name="act" value="action_mlogin"/>
+   	    <input type="hidden" name="mod" value="admin"/>
+        <li><input type="submit" class="button_input" onclick="checkvalue()" value="确认修改"></li>
+      </ul>
+    </table>
+  </div>
+</section>
+{include file="info.html"}
+</body>
+</html>

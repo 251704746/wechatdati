@@ -1,0 +1,91 @@
+<div class="fullscreen" onclick="hidebox()"></div>
+<div class="popuptip">
+<div class="popuptips"></div>
+<div class="popuprow popubtn"></div>
+</div>
+
+<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>  
+<script type="text/javascript">  
+
+wx.config({  
+debug: false,  
+appId: "{$signPackage['appId']}",  
+timestamp: "{$signPackage['timestamp']}",  
+nonceStr: "{$signPackage['nonceStr']}",  
+signature: "{$signPackage['signature']}",  
+jsApiList: [  
+    'onMenuShareTimeline',  
+    'onMenuShareAppMessage'  
+]  
+});  
+
+/*
+wx.error(function(res){  
+    alert("error:"+JSON.stringify(res));  
+  
+}); */ 
+  
+wx.ready(function () {  
+  
+   wx.onMenuShareTimeline({  
+        title: "{$pageinfo['title']}", // 分享标题  
+        link: "{$pageinfo['link']}", // 分享链接  
+        desc:"{$pageinfo['desc']}",  
+        imgUrl: "{$pageinfo['imgUrl']}", // 分享显示的缩略图  
+        success: function () {   
+            //alert('分享完成');  
+        },cancel: function () {   
+			//alert('取消分享');  
+        },fail: function (res) {  
+           //alert(JSON.stringify(res));  
+		}  
+    });   
+    //分享给朋友  
+    wx.onMenuShareAppMessage({  
+		title: "{$pageinfo['title']}", // 分享标题  
+        link: "{$pageinfo['link']}", // 分享链接  
+        desc:"{$pageinfo['desc']}",  
+        imgUrl: "{$pageinfo['imgUrl']}", // 分享显示的缩略图   
+        success: function () {   
+            // 用户确认分享后执行的回调函数  
+            // alert('分享完成');  
+        },  
+        cancel: function () {   
+            // 用户取消分享后执行的回调函数  
+            // alert('淘气了哦，你取消分享');  
+        },fail: function (res) {  
+           // alert(JSON.stringify(res));  
+      }  
+    }); 
+	
+});  
+
+
+var uid = '{$uid}';
+var usubscribe = '{$usubscribe}';
+
+if(usubscribe != 1){
+	var hv = "请进入公众号「 <span style='color:red;font-weight:bold'>{$wxinfo['wxlname']}</span> 」,回复「答题抽奖」进入活动！";
+	hv += "若还未关注公众号的，请点击确认跳转到新页面，点击新页面头部公众号名称进行关注，关注后即可回复参与！";
+	show_popuptip(hv,"<a href='{$wxinfo.wxlurl}'><div class='popuptipbtn'>确 认</div></a>");
+}
+	
+function close_popuptip()
+{
+	$(".fullscreen").hide();
+	$(".popuptip").hide();
+}
+
+function show_popuptip(tip,btn="")
+{
+	$(".popuptips").html(tip);
+	if(btn){
+		$(".popubtn").html(btn);
+	}else{
+		$(".popubtn").html('<a href="javascript:;" onclick="close_popuptip()"><div class="popuptipbtn">确 认</div></a>');
+	}
+	
+	$(".fullscreen").show();
+	$(".popuptip").show();
+}
+</script>

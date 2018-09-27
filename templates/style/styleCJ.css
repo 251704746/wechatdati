@@ -1,0 +1,65 @@
+
+
+	*{
+		margin: 0;padding: 0;
+	}
+
+	.shanDeng{
+		width: 100%;
+		padding-top:100px;
+		margin-bottom: .15rem;
+	}
+
+	#btn .cjBtn,.shanDeng .active,.shanDeng td{
+		width: 180px;
+		height:180px;
+	}
+
+	#btn.cjBtn{
+		background-image: url(../images/cjBtn.png);
+		background-size: 100% 100%;
+	}
+	#btn.cjBtnDom{
+		background-image: url(../images/buttonDown.png);
+	}
+
+#luck .active{
+		background-image: url(../images/active.png);
+	}
+	.shanDeng td{
+		text-align: center;
+		background-image: url(../images/proBj.png);
+		background-size: 100% 100%;
+	}
+	.shanDeng table{
+		margin: 0 auto;
+	}
+
+
+/*rule e*/
+.play {
+	width: 100%;
+	max-width:640px;
+	height: 80px;
+	line-height: 80px;
+	background-color: #eee;
+	position: relative;
+	top:0;
+	opacity:0.8;
+}
+.play .div{
+	height: 100%;
+	margin-left: 90px;
+	border-left: 2px solid #f9f9f9;
+}
+.play span{
+	background: url("../images/icon-laba.png") no-repeat;
+	background-size: 100%;
+	position: absolute;
+	top: 28px;
+	transform: translateY(-50%);
+	
+	height: 40px;
+	width: 49px;
+	margin: 10px;
+}

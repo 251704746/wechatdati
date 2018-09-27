@@ -1,0 +1,134 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>答题管理</title>
+<link rel="stylesheet" type="text/css" href="{$dir}css/css.css" />
+<script type="text/javascript" src="{$dir}js/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="js/page.js" ></script> -->
+<script type="text/javascript">
+
+
+function oncheck(){
+	var flag = $("#CheckAll").is(":checked"); 
+
+	$('input[name=subBox]').prop("checked", flag); 
+}
+
+function deleteAll()
+{
+	var ids = [];
+	 $("input[name=subBox]").each(function() {  
+		if ($(this).prop("checked")) { 
+			ids.push($(this).val()); 
+		}  
+	}); 
+	
+	if(ids === undefined || ids.length == 0){
+		showform("请先选择您要删除的题目");
+	}else{
+		window.location.href="index.php?mod=admin&act=delete_subject&id="+ids;
+	}
+}
+
+function copyAll()
+{
+	var ids = [];
+	 $("input[name=subBox]").each(function() {  
+		if ($(this).prop("checked")) { 
+			ids.push($(this).val()); 
+		}  
+	}); 
+	
+	if(ids === undefined || ids.length == 0){
+		showform("请先选择您要复制的题目");
+	}else{
+		var said = $("#said").val();
+		if(said == 0){
+			showform("请先选择您要复制到的目标活动");
+		}else{
+			$("#ids").val(ids);
+			showform("正在复制，请稍后......");
+			$("#myform").submit();	
+		}
+	}
+}
+	
+		
+</script>
+</head>
+
+<body>
+	<div id="pageAll">
+		<div class="pageTop">
+			<div class="page pos">
+				当前位置：首页&nbsp;-&nbsp;题库管理&nbsp;-&nbsp;题库列表
+			</div>
+		</div>
+
+		<div class="page">
+			<!-- user页面样式 -->
+			<div class="connoisseur">
+				<!-- user 表格 显示 -->
+				<div class="conShow">
+				
+				<div class="tableheader">
+				<form action='index.php' method="get" id="myform">
+				<span class="lheader"><a href="javascript:;" onclick="deleteAll()"><div class="btn">删除</div></a>
+				
+				<label>复制到</label><select id="said" name="aid"><option value="0">请选择复制目标活动</option>{foreach from=$allactivity item="all"}<option value="{$all['aid']}">{$all['atitle']}</option>{/foreach}</select>
+				<input name="mod" id="mod" type="hidden" value="admin"/>
+				<input name="act" id="act" type="hidden" value="copy_subject"/>
+				<input name="ids" id="ids" type="hidden" value=""/>
+				<a href="javascript:;" onclick="copyAll()"><div class="btn">复制</div></a>
+				</span>
+				</form>
+				<span class="rheader"><a href="index.php?mod=admin&act=addsubject"><div class="ubtn">添加题目</div></a></span>
+				</div>
+				
+					<table border="1" cellspacing="0" cellpadding="0">
+						<tr>
+							<td width="5%" class="tdColor tdC"><input type="checkbox" value="1" id="CheckAll" onclick="oncheck()"/></td>
+							<td width="20%" class="tdColor">活动名称</td>
+							<td width="5%" class="tdColor">题型</td>
+							<td width="25%" class="tdColor">题目</td>
+							<td width="15%" class="tdColor">添加时间</td>
+							<td width="15%" class="tdColor">操作</td>
+						</tr>
+						{foreach from=$subject item="infos"}
+						<tr height="40px">
+							<td><input name="subBox" type="checkbox" value="{$infos.sid}" /></td>
+							<td>{$infos['satitle']}</td>
+							<td>{$infos['stype']}</td>
+							<td>{$infos['stitle']}</td>
+							<td>{$infos['stime']}</td>
+							<td><a href="index.php?mod=admin&act=addsubject&sid={$infos['sid']}">编辑</a> 
+							| <a href="index.php?mod=admin&act=cpsubject&sid={$infos['sid']}">复制</a> | <a href="index.php?mod=admin&act=delete_subject&id={$infos['sid']}">删除</a></td>
+						</tr>
+						{/foreach}
+					</table>
+					<div class="page_area">
+
+					<span class="pageinfo">共 <font color="#68abc6">{$filter["total"]}</font> 条记录，分 <font color="#68abc6">{$filter["tpage"]}</font> 
+
+					页，当前第 <font color="#68abc6">{$filter["cpage"]}</font> 页</span>
+					<span class="pagebtn">
+
+					<a href="index.php?mod=admin&act=subject&cpage=1">首页</a> 
+					<a href="index.php?mod=admin&act=subject&cpage={$filter['fpage']}">上一页</a> 
+					<a href="index.php?mod=admin&act=subject&cpage={$filter['npage']}">下一页</a>
+					<a href="index.php?mod=admin&act=subject&cpage={$filter['lpage']}">末页</a>
+					 
+					 </span></div>
+				</div>
+				<!-- user 表格 显示 end-->
+			</div>
+			<!-- user页面样式end -->
+		</div>
+
+	</div>
+
+{include file="info.html"}
+
+</body>
+
+</html>

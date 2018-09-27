@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>修改密码</title>
+<link rel="stylesheet" type="text/css" href="{$dir}css/css.css" />
+<script type="text/javascript" src="{$dir}js/jquery.min.js"></script>
+<script type="text/javascript">
+function checkvalue()
+{
+	var pwd1 = $("#pwd1").val();
+	var uid = $("#uid").val();
+	var pwd2 = $("#pwd2").val();
+	var pwd3 = $("#pwd3").val();
+	if(pwd1 == ""){
+		showform("请输入原密码");
+		return false;
+	}if(pwd2 == ""){
+		showform("请输入新密码");
+		return false;
+	}if(pwd3 == ""){
+		showform("请确认新密码");
+		return false;
+	}if(pwd2 != pwd3){
+		showform("两次输入的密码不一致");
+		return false;
+	}
+
+	$.post("index.php?mod=admin&act=checkoldpwd",{
+	"password":pwd1
+	},function(res){
+	
+		if(res != 1){
+			showform("原密码输入有误");
+			return false;
+		}else{
+			
+			$.post("index.php?mod=admin&act=action_changepwd",{
+				"password":pwd2
+				},function(res){
+				window.location.reload();
+			});
+		}
+		
+	});
+}
+</script>
+</head>
+<body>
+	<div id="pageAll">
+		<div class="pageTop">
+			<div class="page pos">
+				当前位置：首页&nbsp;-&nbsp;公共管理&nbsp;-&nbsp;修改密码
+			</div>
+		</div>
+		<div class="page ">
+			<!-- 修改密码页面样式 -->
+			<div class="bacen">
+				<div class="bbD">
+				     <span class="bcname">管理员昵称：</span><span class="bcvalue">{$username}</span></div>
+				<div class="bbD">
+					<span class="bcname">输入旧密码：</span><span class="bcvalue"><input type="password" class="input3"
+						 id="pwd1" onfocus="this.style='border:1px solid #27A9E3'" onblur="this.style='border:1px solid #DCDEE0'" /> </span>
+				</div>
+				<div class="bbD">
+					<span class="bcname">输入新密码：</span><span class="bcvalue"><input type="password" class="input3"
+						 id="pwd2" onfocus="this.style='border:1px solid #27A9E3'" onblur="this.style='border:1px solid #DCDEE0'" /> </span>
+				</div>
+				<div class="bbD">
+					<span class="bcname">再确认密码：</span><span class="bcvalue"><input type="password" class="input3" 
+						id="pwd3"  onfocus="this.style='border:1px solid #27A9E3'" onblur="this.style='border:1px solid #DCDEE0'"/> </span>
+				</div>
+				<div class="bbD">
+					<p class="bbDP">
+						<button class="btn_ok btn_yes" onclick="checkvalue()">提交</button>
+					</p>
+				</div>
+			</div>
+
+			<!-- 修改密码页面样式end -->
+		</div>
+	</div>
+{include file="info.html"}
+</body>
+
+</html>

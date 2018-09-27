@@ -1,0 +1,421 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>活动设置</title>
+<link rel="stylesheet" type="text/css" href="{$dir}css/css.css" />
+<script type="text/javascript" src="{$dir}js/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="ueditor/ueditor.all.min.js"> </script>
+<script type="text/javascript" src="datePicker/WdatePicker.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+	$("#li1").addClass("active");
+	for(var i=1;i<4;i++){
+		$("#utab"+i).hide();
+	}
+	$("#utab1").show();
+})
+
+function showtab(id){
+	for(var i=1;i<4;i++){
+		$("#utab"+i).hide();
+		$("#li"+i).removeClass("active");
+	}
+	$("#li"+id).addClass("active");
+	$("#utab"+id).show();
+}
+
+function filterinfo()
+{
+	var aorganization = $("#aorganization").val();
+	var asthumb = $("#photoCovers").val();
+	var atitle = $("#atitle").val();
+	var arnum = $("#arnum").val();
+	var acnum = $("#acnum").val();
+	var astarttime = $("#astarttime").val();
+	var aendtime = $("#aendtime").val();
+	var artnum = $("#artnum").val();
+	var arpnum = $("#arpnum").val();
+	var aspnum = $("#aspnum").val();
+	var adeadline = $("#adeadline").val();
+
+	if(aorganization == ''){
+		showform("请输入主办单位");
+		return false;
+	}
+	if(asthumb == ''){
+		showform("请选择分享小图标");
+		return false;
+	}
+	if(atitle == ''){
+		showform("请输入活动主题");
+		return false;
+	}
+	if(arnum == ''){
+		showform("请输入单选数量");
+		return false;
+	}
+	if(acnum == ''){
+		showform("请输入多选数量");
+		return false;
+	}
+	if(astarttime == ''){
+		showform("请输入开始时间");
+		return false;
+	}
+	if(aendtime == ''){
+		showform("请输入结束时间");
+		return false;
+	}
+	if(artnum == ''){
+		showform("请输入每日每个用户可答题数量");
+		return false;
+	}
+	if(arpnum == ''){
+		showform("请输入每日每个用户可抽奖数量");
+		return false;
+	}
+	if(aspnum == ''){
+		showform("请输入活动每个用户可抽奖数量");
+		return false;
+	}
+	if(adeadline == ''){
+		showform("请输入领奖截止时间");
+		return false;
+	}
+}
+
+
+</script>
+
+</head>
+<body>
+	<div id="pageAll">
+		<div class="pageTop">
+			<div class="page pos">
+				当前位置：首页&nbsp;-&nbsp;活动管理&nbsp;-&nbsp;活动设置
+			</div>
+		</div>
+		<div class="page ">
+		
+			<div class="wrap" id="wrap">
+			<ul class="tabClick">
+				<li onclick="showtab(1)" id="li1" class="active">基本设置</li>
+				<li onclick="showtab(2)" id="li2" >活动规则</li>
+				<li onclick="showtab(3)" id="li3" >奖品设置</li>
+			</ul>
+			<div class="tabCon">
+			<form action="index.php?mod=admin&act=action_activity" method="post" enctype="multipart/form-data" onsubmit="return filterinfo()">
+				<div class="tabBox">
+					<div class="tabList" id="utab1">
+							<div class="bbD">
+								<span class="bcname">主办单位：</span><span class="bcvalue"><input type="text" class="input3"
+									id="aorganization" name="aorganization" value="{$activity['aorganization']}"/> </span>
+							</div>
+							<div class="bbD">
+								<span class="bcname">背景图片：</span><span class="bcvalue">
+							<input type="file" id="abthumb" name="abthumb" value="" style="display:none" accept="image/gif, image/jpeg, image/png"/>
+						<a class="btn" onclick="$('input[id=abthumb]').click();">
+						<input id="bphotoCover" value="{$activity['abthumb']}" class="input3" type="text" readOnly="true" name="athumb" 
+						placeholder="背景图片(尺寸建议1000*1520)" required="required" ></a> </span>
+							</div>
+							<div class="bbD">
+								<span class="bcname">活动主图：</span><span class="bcvalue">
+							<input type="file" id="athumb" name="athumb" value="" style="display:none" accept="image/gif, image/jpeg, image/png"/>
+						<a class="btn" onclick="$('input[id=athumb]').click();">
+						<input id="photoCover" value="{$activity['athumb']}" class="input3" type="text" readOnly="true" name="athumb" 
+						placeholder="微信图文回复图片(尺寸建议9:5)" required="required" ></a> </span>
+							</div>
+							<div class="bbD">
+								<span class="bcname">分享小图：</span><span class="bcvalue">
+							<input type="file" id="asthumb" name="asthumb" value="" style="display:none" accept="image/gif, image/jpeg, image/png"/>
+						<a class="btn" onclick="$('input[id=asthumb]').click();">
+						<input id="photoCovers" value="{$activity['asthumb']}" class="input3" type="text" readOnly="true" name="asthumb" 
+						placeholder="微信分享小图标(建议正方形)" required="required" ></a> </span>
+							</div>
+							<div class="bbD">
+								<span class="bcname">活动标题：</span><span class="bcvalue"><input type="text" class="input3"
+									id="atitle" name="atitle" value="{$activity['atitle']}"/> </span>
+							</div>
+							<div class="bbD">
+								<span class="bcname">活动说明：</span><span class="bcvalue"><input type="text" class="input3"
+									id="adescribe" name="adescribe" value="{$activity['adescribe']}"/> </span>
+							</div>
+							<div class="bbD">
+								<span class="bcname">单选数量：</span><span class="bcvalue"><input type="text" class="input3"
+									id="asnum" name="arnum" value="{$activity['arnum']}"/> </span>
+							</div>
+							<div class="bbD">
+								<span class="bcname">多选数量：</span><span class="bcvalue"><input type="text" class="input3"
+									id="asnum" name="acnum" value="{$activity['acnum']}"/> </span>
+							</div>
+							<div class="bbD">
+								<span class="bcname">开始时间：</span><span class="bcvalue"><input type="text" class="input3"
+									onFocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" id="astarttime" name="astarttime" value="{$activity['astarttime']}" /> </span>
+							</div>
+							<div class="bbD">
+								<span class="bcname">结束时间：</span><span class="bcvalue"><input type="text" class="input3"
+									onFocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" id="aendtime" name="aendtime" value="{$activity['aendtime']}" /> </span>
+							</div>
+							<div class="bbD">
+								<span class="bcname">抽奖条件：</span><span class="bcvalue">
+									<select class="input3" id="acondition" name="acondition" />
+										<option value="0.6" {if $activity['acondition'] eq 0.6} selected{/if}>正确率达60%以上</option>
+										<option value="0.7" {if $activity['acondition'] eq 0.7} selected{/if}>正确率达70%以上</option>
+										<option value="0.8" {if $activity['acondition'] eq 0.8}selected{/if}>正确率达80%以上</option>
+										<option value="0.9" {if $activity['acondition'] eq 0.9}selected{/if}>正确率达90%以上</option>
+										<option value="1" {if $activity['acondition'] eq 1}selected{/if}>正确率达100%</option>
+									</select>
+								</span>
+							</div>
+							<div class="bbD">
+								<span class="bcname">日答题数：</span><span class="bcvalue"><input type="text" class="input3"
+									id="artnum" name="artnum" value="{$activity['artnum']}"/> </span>
+							</div>
+							<div class="bbD">
+								<span class="bcname">总答题数：</span><span class="bcvalue"><input type="text" class="input3"
+									id="astnum" name="astnum" value="{$activity['astnum']}"/> </span>
+							</div>
+							<div class="bbD">
+								<span class="bcname">日中奖数：</span><span class="bcvalue"><input type="text" class="input3"
+									id="arpnum" name="arpnum" value="{$activity['arpnum']}"/> </span>
+							</div>
+							<div class="bbD">
+								<span class="bcname">总中奖数：</span><span class="bcvalue"><input type="text" class="input3"
+									id="aspnum" name="aspnum" value="{$activity['aspnum']}"/> </span>
+							</div>
+							
+						<div class="bbD" style="color:#888"><div style="line-height:20px;padding-top:30px">
+						注：日答题数即每个用户可答题次数，日中奖数为每个用户每日可以中奖多少次，总中奖数是指本次活动每个用户可以中奖的总次数。</div>
+						</div>		
+						
+							<div class="bbD">
+								<p class="bbDP">
+									<a href="javascript:;" class="btn_ok btn_yes" onclick="showtab(2)">下一步</a>
+								</p> 
+							</div>
+					
+					</div>
+					<div class="tabList" id="utab2">
+						<div class="bbD">
+							<span class="bcname">活动规则：</span><span class="bcvaluess">
+							<div id="myEditor" name="arule">
+							<script type="text/javascript">
+								var editor = new baidu.editor.ui.Editor({
+									initialContent: '{$activity["arule"]}',
+									initialFrameHeight:280
+								});
+								editor.render("myEditor");
+							</script>
+							</div></span>
+						</div>
+						<div class="bbD">
+								<p class="bbDP">
+									<a href="javascript:;" class="btn_ok btn_yes" onclick="showtab(3)">下一步</a>
+								</p>
+							
+							</div>
+					</div>
+					<div class="tabList" id="utab3">
+						<div class="bbD" style="font-weight:bold">
+						<span class="bcvalues">
+						<span style="float:left;width:90px;text-align:center;margin-right:10px;">奖项名</span>
+						<span style="float:left;width:90px;text-align:center;margin-right:10px;"> 图片</span>
+						<span style="float:left;width:90px;text-align:center;margin-right:10px;"> 类型</span>
+						<span style="float:left;width:190px;text-align:center;margin-right:10px;"> 奖品名称</span>
+						<span style="float:left;width:80px;text-align:center;margin-right:10px;"> 红包额度</span>
+						<span style="float:left;width:80px;text-align:center;margin-right:10px;"> 奖品数量</span>
+						<span style="float:left;width:80px;text-align:center;margin-right:10px;"> 中奖概率</span>
+						<span style="float:left;width:80px;text-align:center;margin-right:10px;"> 实际剩余</span>
+						<span style="float:left;width:80px;text-align:center;margin-right:10px;"> 剩余份额</span>
+						</span>
+						</div>
+						
+						<div class="bbD"><span class="bcvalues">
+							<input class="input4" name="infos[1][paward]" placeholder="奖项名称" value="{if $prizes}{$prizes[0]['paward']}{/if}"/> 
+							<input type="file" id="awardimg1" name="awardimg1" value="" style="display:none" accept="image/gif, image/jpeg, image/png"/>
+						<a class="btn" onclick="$('input[id=awardimg1]').click();">
+						<input id="photoCover1" value="{if $prizes}{$prizes[0]['pthumb']}{/if}" class="input4" type="text" readOnly="true" name="infos[1][pthumb]" 
+						placeholder="奖品图片" required="required" ></a>
+						<input type="hidden" class="input3" name="infos[1][pid]" value="{if $prizes}{$prizes[0]['pid']}{/if}"/> 
+						<select class="input4" name="infos[1][ptype]">
+						<option value="1" {if $prizes}{if $prizes[0]['ptype'] eq 1} selected {/if}{/if}>卡券实物</option>
+						<option value="2" {if $prizes}{if $prizes[0]['ptype'] eq 2} selected {/if}{/if}>微信红包</option>
+						</select>
+						<input type="text" class="input5"  placeholder="奖品名称" name="infos[1][pname]"  value="{if $prizes}{$prizes[0]['pname']}{/if}"/> 
+						<input type="text" class="input4"  placeholder="红包额度" name="infos[1][ppacket]" value="{if $prizes}{$prizes[0]['ppacket']}{/if}"/>
+						<input type="text" class="input4"  placeholder="奖品数量" name="infos[1][pnum]" value="{if $prizes}{$prizes[0]['pnum']}{/if}"/>
+						<input type="text" class="input4"  placeholder="中奖概率" name="infos[1][pprobability]" value="{if $prizes}{$prizes[0]['pprobability']}{/if}"/>
+						<input type="text" class="input4" disabled  placeholder="实际剩余" name="infos[1][prleft]" value="{if $prizes}{$prizes[0]['prleft']}{else}0{/if}"/>
+						<input type="text" class="input4"  placeholder="剩余份额" name="infos[1][pleft]" value="{if $prizes}{$prizes[0]['pleft']}{else}0{/if}"/>
+						</span>
+						</div>
+						<div class="bbD"><span class="bcvalues">
+							<input class="input4" name="infos[2][paward]" placeholder="奖项名称" value="{if $prizes}{$prizes[1]['paward']}{/if}"/>
+						<input type="file" id="awardimg2" name="awardimg2" value="" style="display:none" accept="image/gif, image/jpeg, image/png"/>
+						<a class="btn" onclick="$('input[id=awardimg2]').click();">
+						<input id="photoCover2" value="{if $prizes}{$prizes[1]['pthumb']}{/if}" class="input4" type="text" readOnly="true" name="infos[2][pthumb]" placeholder="奖品图片" required="required" ></a>
+						<input type="hidden" class="input3" name="infos[2][pid]" value="{if $prizes}{$prizes[1]['pid']}{/if}"/> 
+						<select class="input4" name="infos[2][ptype]">
+						<option value="1" {if $prizes}{if $prizes[1]['ptype'] eq 1} selected {/if}{/if}>卡券实物</option>
+						<option value="2" {if $prizes}{if $prizes[1]['ptype'] eq 2} selected {/if}{/if}>微信红包</option>
+						</select>
+						<input type="text" class="input5" placeholder="奖品名称" name="infos[2][pname]" value="{if $prizes}{$prizes[1]['pname']}{/if}"/> 
+						<input type="text" class="input4" placeholder="红包额度" name="infos[2][ppacket]" value="{if $prizes}{$prizes[1]['ppacket']}{/if}"/> 
+						<input type="text" class="input4" placeholder="奖品数量" name="infos[2][pnum]" value="{if $prizes}{$prizes[1]['pnum']}{/if}"/>
+						<input type="text" class="input4" placeholder="中奖概率" name="infos[2][pprobability]" value="{if $prizes}{$prizes[1]['pprobability']}{/if}"/>
+						<input type="text" class="input4" disabled  placeholder="实际剩余" name="infos[2][prleft]" value="{if $prizes}{$prizes[1]['prleft']}{else}0{/if}"/>
+						<input type="text" class="input4"  placeholder="剩余份额" name="infos[2][pleft]" value="{if $prizes}{$prizes[1]['pleft']}{else}0{/if}"/>
+						</span>
+						</div>
+						<div class="bbD"><span class="bcvalues">
+							<input class="input4" name="infos[3][paward]" placeholder="奖项名称" value="{if $prizes}{$prizes[2]['paward']}{/if}"/> 
+						<input type="file" id="awardimg3" name="awardimg3" value="" style="display:none" accept="image/gif, image/jpeg, image/png"/>
+						<a class="btn" onclick="$('input[id=awardimg3]').click();">
+						<input id="photoCover3" value="{if $prizes}{$prizes[2]['pthumb']}{/if}" class="input4" type="text" readOnly="true" name="infos[3][pthumb]" placeholder="奖品图片" required="required" ></a>
+						<input type="hidden" class="input3" name="infos[3][pid]" value="{if $prizes}{$prizes[2]['pid']}{/if}"/> 
+						<select class="input4" name="infos[3][ptype]">
+						<option value="1" {if $prizes}{if $prizes[2]['ptype'] eq 1} selected {/if}{/if}>卡券实物</option>
+						<option value="2" {if $prizes}{if $prizes[2]['ptype'] eq 2} selected {/if}{/if}>微信红包</option>
+						</select>
+						<input type="text" class="input5" placeholder="奖品名称" name="infos[3][pname]" value="{if $prizes}{$prizes[2]['pname']}{/if}"/> 
+						<input type="text" class="input4" placeholder="红包额度" name="infos[3][ppacket]" value="{if $prizes}{$prizes[2]['ppacket']}{/if}"/> 
+						<input type="text" class="input4" placeholder="奖品数量" name="infos[3][pnum]" value="{if $prizes}{$prizes[2]['pnum']}{/if}"/>
+						<input type="text" class="input4" placeholder="中奖概率" name="infos[3][pprobability]" value="{if $prizes}{$prizes[2]['pprobability']}{/if}"/>
+						<input type="text" class="input4" disabled placeholder="实际剩余" name="infos[3][prleft]" value="{if $prizes}{$prizes[2]['prleft']}{else}0{/if}"/>
+						<input type="text" class="input4"  placeholder="剩余份额" name="infos[3][pleft]" value="{if $prizes}{$prizes[2]['pleft']}{else}0{/if}"/>
+						</span>
+						</div>
+						<div class="bbD"><span class="bcvalues">
+							<input class="input4" name="infos[4][paward]" placeholder="奖项名称" value="{if $prizes}{$prizes[3]['paward']}{/if}"/>
+						<input type="file" id="awardimg4" name="awardimg4" value="" style="display:none" accept="image/gif, image/jpeg, image/png"/>
+						<a class="btn" onclick="$('input[id=awardimg4]').click();">
+						<input id="photoCover4" value="{if $prizes}{$prizes[3]['pthumb']}{/if}" class="input4" type="text" readOnly="true" name="infos[4][pthumb]" placeholder="奖品图片" required="required" ></a>
+						<input type="hidden" class="input3" name="infos[4][pid]" value="{if $prizes}{$prizes[3]['pid']}{/if}"/> 
+						<select class="input4" name="infos[4][ptype]">
+						<option value="1" {if $prizes}{if $prizes[3]['ptype'] eq 1} selected {/if}{/if}>卡券实物</option>
+						<option value="2" {if $prizes}{if $prizes[3]['ptype'] eq 2} selected {/if}{/if}>微信红包</option>
+						</select>
+						<input type="text" class="input5" placeholder="奖品名称" name="infos[4][pname]" value="{if $prizes}{$prizes[3]['pname']}{/if}"/> 
+						<input type="text" class="input4" placeholder="红包额度" name="infos[4][ppacket]" value="{if $prizes}{$prizes[3]['ppacket']}{/if}"/>
+						<input type="text" class="input4" placeholder="奖品数量" name="infos[4][pnum]" value="{if $prizes}{$prizes[3]['pnum']}{/if}"/>
+						<input type="text" class="input4" placeholder="中奖概率" name="infos[4][pprobability]" value="{if $prizes}{$prizes[3]['pprobability']}{/if}"/>
+						<input type="text" class="input4" disabled placeholder="实际剩余" name="infos[4][prleft]" value="{if $prizes}{$prizes[3]['prleft']}{else}0{/if}"/>
+						<input type="text" class="input4"  placeholder="剩余份额" name="infos[4][pleft]" value="{if $prizes}{$prizes[3]['pleft']}{else}0{/if}"/>
+						</span>
+						</div>
+						<div class="bbD"><span class="bcvalues">
+							<input class="input4" name="infos[5][paward]" placeholder="奖项名称" value="{if $prizes}{$prizes[4]['paward']}{/if}"/>
+						<input type="file" id="awardimg5" name="awardimg5" value="" style="display:none" accept="image/gif, image/jpeg, image/png"/>
+						<a class="btn" onclick="$('input[id=awardimg5]').click();">
+						<input id="photoCover5" value="{if $prizes}{$prizes[4]['pthumb']}{/if}" class="input4" type="text" readOnly="true" name="infos[5][pthumb]" placeholder="奖品图片" required="required" ></a>
+						<input type="hidden" class="input3" name="infos[5][pid]" value="{if $prizes}{$prizes[4]['pid']}{/if}"/> 
+						<select class="input4" name="infos[5][ptype]">
+						<option value="1" {if $prizes}{if $prizes[4]['ptype'] eq 1} selected {/if}{/if}>卡券实物</option>
+						<option value="2" {if $prizes}{if $prizes[4]['ptype'] eq 2} selected {/if}{/if}>微信红包</option>
+						</select>
+						<input type="text" class="input5" placeholder="奖品名称" name="infos[5][pname]" value="{if $prizes}{$prizes[4]['pname']}{/if}"/> 
+						<input type="text" class="input4" placeholder="红包额度" name="infos[5][ppacket]" value="{if $prizes}{$prizes[4]['ppacket']}{/if}"/>
+						<input type="text" class="input4" placeholder="奖品数量" name="infos[5][pnum]" value="{if $prizes}{$prizes[4]['pnum']}{/if}"/>
+						<input type="text" class="input4" placeholder="中奖概率" name="infos[5][pprobability]" value="{if $prizes}{$prizes[4]['pprobability']}{/if}"/>
+						<input type="text" class="input4" disabled placeholder="实际剩余" name="infos[5][prleft]" value="{if $prizes}{$prizes[4]['prleft']}{else}0{/if}"/>
+						<input type="text" class="input4"  placeholder="剩余份额" name="infos[5][pleft]" value="{if $prizes}{$prizes[4]['pleft']}{else}0{/if}"/>
+						</span>
+						</div>
+						<div class="bbD"><span class="bcvalues">
+							<input class="input4" name="infos[6][paward]" placeholder="奖项名称" value="{if $prizes}{$prizes[5]['paward']}{/if}"/>
+						<input type="file" id="awardimg6" name="awardimg6" value="" style="display:none" accept="image/gif, image/jpeg, image/png"/>
+						<a class="btn" onclick="$('input[id=awardimg6]').click();">
+						<input id="photoCover6" value="{if $prizes}{$prizes[5]['pthumb']}{/if}" class="input4" type="text" readOnly="true" name="infos[6][pthumb]" placeholder="奖品图片" required="required" ></a>
+						<input type="hidden" class="input3" name="infos[6][pid]" value="{if $prizes}{$prizes[5]['pid']}{/if}"/> 
+						<select class="input4" name="infos[6][ptype]">
+						<option value="1" {if $prizes}{if $prizes[5]['ptype'] eq 1} selected {/if}{/if}>卡券实物</option>
+						<option value="2" {if $prizes}{if $prizes[5]['ptype'] eq 2} selected {/if}{/if}>微信红包</option>
+						</select>
+						<input type="text" class="input5" placeholder="奖品名称" name="infos[6][pname]" value="{if $prizes}{$prizes[5]['pname']}{/if}"/> 
+						<input type="text" class="input4" placeholder="红包额度" name="infos[6][ppacket]" value="{if $prizes}{$prizes[5]['ppacket']}{/if}"/> 
+						<input type="text" class="input4" placeholder="奖品数量" name="infos[6][pnum]" value="{if $prizes}{$prizes[5]['pnum']}{/if}"/>
+						<input type="text" class="input4" placeholder="中奖概率" name="infos[6][pprobability]" value="{if $prizes}{$prizes[5]['pprobability']}{/if}"/>
+						<input type="text" class="input4" disabled placeholder="实际剩余" name="infos[6][prleft]" value="{if $prizes}{$prizes[5]['prleft']}{else}0{/if}"/>
+						<input type="text" class="input4"  placeholder="剩余份额" name="infos[6][pleft]" value="{if $prizes}{$prizes[5]['pleft']}{else}0{/if}"/>
+						</span>
+						</div>
+						<div class="bbD">
+								<span class="bcname">奖品领取截止时间：</span><span class="bcvalue"><input type="text" class="input3"
+									id="adeadline" name="adeadline" value="{$activity['adeadline']}" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })"/> </span>
+							</div>
+						<div class="bbD">
+								<span class="bcname">卡券实物领奖说明：</span><span class="bcvalue"><input type="text" class="input3"
+									id="amaterial" name="amaterial" value="{$activity['amaterial']}"/> </span>
+							</div>
+				
+						<div class="bbD">
+								<span class="bcname">微信红包领奖说明：</span><span class="bcvalue"><input type="text" class="input3"
+									id="aredpacket" name="aredpacket" value="{$activity['aredpacket']}"/> </span>
+							</div>		
+					
+
+						<div class="bbD" style="color:#888"><div style="line-height:20px;padding-top:30px">
+						注：奖项最少设置三项，最多设置六项。当设置奖项少于六项时，只要将剩余的奖项内容留空即可。</div>
+						<div style="line-height:20px;">实际剩余即奖品实际剩余数量（包含中奖未被领取），剩余份额则根据用户需要设置，但不能超过实际剩余份额；</div>
+						<div style="line-height:20px;">总中奖概率不超过100%，即几个奖项中奖概率和小于等于1，若六个奖项概率和小于1，则剩下的概率则为未中奖概率！</div>
+						<div style="line-height:20px;">如：1-6等奖设置的中奖概率和为0.6;则未中奖概率为0.4；如果奖品是微信红包，则需则填微信红包额度，如：8.88</div></div>
+						<input type="hidden" id="aid" name="aid" value="{$activity['aid']}" />
+						<div class="bbD">
+							<p class="bbDP">
+								<input class="btn_ok btn_yes" type="submit" value="提交"/>
+							</p>
+						</div>
+					</div>
+				</div>
+				</form>
+			</div>
+		</div>
+		
+		</div>
+	</div>
+<script type="text/javascript">
+$('input[id=abthumb]').change(function() 
+{
+$('#bphotoCover').val($(this).val());
+});
+$('input[id=athumb]').change(function() 
+{
+$('#photoCover').val($(this).val());
+});
+$('input[id=asthumb]').change(function() 
+{
+$('#photoCovers').val($(this).val());
+});
+$('input[id=awardimg1]').change(function() 
+{
+$('#photoCover1').val($(this).val());
+});
+$('input[id=awardimg2]').change(function() 
+{
+$('#photoCover2').val($(this).val());
+});
+$('input[id=awardimg3]').change(function() 
+{
+$('#photoCover3').val($(this).val());
+});
+$('input[id=awardimg4]').change(function() 
+{
+$('#photoCover4').val($(this).val());
+});
+$('input[id=awardimg5]').change(function() 
+{
+$('#photoCover5').val($(this).val());
+});
+$('input[id=awardimg6]').change(function() 
+{
+$('#photoCover6').val($(this).val());
+});
+
+</script>
+{include file="info.html"}
+</body>
+
+</html>

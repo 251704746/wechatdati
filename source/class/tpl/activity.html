@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>会员管理</title>
+
+<link rel="stylesheet" type="text/css" href="{$dir}css/page.css"/>
+<link rel="stylesheet" type="text/css" href="{$dir}css/css.css" />
+
+<script type="text/javascript" src="{$dir}js/jquery.min.js"></script>
+<script type="text/javascript">
+function chaxun()
+{
+	var satitle = $("#satitle").val();
+	window.location.href = "index.php?mod=admin&act=activity&cpage={$filter['cpage']}&satitle="+satitle;
+}
+</script>
+</head>
+
+<body>
+	<div id="pageAll">
+		<div class="pageTop">
+			<div class="page pos">
+				当前位置：首页&nbsp;-&nbsp;活动管理&nbsp;-&nbsp;活动列表
+			</div>
+		</div>
+
+		<div class="page">
+			<!-- user页面样式 -->
+			<div class="connoisseur">
+				<!-- user 表格 显示 -->
+				<div class="conShow">
+				
+				<div class="tableheader">
+				<span class="lheader"><label>活动名称：</label><input type="text" id="satitle" class="input3" value="{$satitle}"><a onclick="chaxun()"><div class="btn">查询</div></a></span>
+				<span class="rheader"><a href="index.php?mod=admin&act=addactivity"><div class="ubtn">添加活动</div></a></span>
+				</div>
+				
+					<table border="1" cellspacing="0" cellpadding="0">
+						<tr>
+							<td width="5%" class="tdColor tdC">活动ID</td>
+							<td width="25%" class="tdColor">活动名称</td>
+							<td width="15%" class="tdColor">创建时间</td>
+							<td width="10%" class="tdColor">参与人数</td>
+							<td width="10%" class="tdColor">访问量</td>
+							<td width="30%" class="tdColor">操作</td>
+						</tr>
+						
+						{foreach from=$activity item="infos"}
+						<tr height="40px">
+							<td>{$infos['aid']}</td>
+							<td>{$infos['atitle']}</td>
+							<td>{$infos['atime']}</td>
+							<td>{$infos['ausers']}</td>
+							<td>{$infos['aviews']}</td>
+							<td><a href="index.php?mod=admin&act=addactivity&aid={$infos['aid']}">编辑</a> | 
+							<a href="index.php?mod=admin&act=manage&aid={$infos['aid']}">核销员</a> |
+							<a href="index.php?mod=admin&act=asubject&aid={$infos['aid']}">题库</a> | 
+							<a href="index.php?mod=admin&act=test&aid={$infos['aid']}">答题情况</a> | 
+							<a href="index.php?mod=admin&act=draw&aid={$infos['aid']}">抽奖情况</a></td>
+						</tr>
+						{/foreach}
+					</table>
+					
+				</div>
+				<!-- user 表格 显示 end-->
+			</div>
+			<!-- user页面样式end -->
+			
+			<div class="page_area">
+
+			<span class="pageinfo">共 <font color="#68abc6">{$filter["total"]}</font> 条记录，分 <font color="#68abc6">{$filter["tpage"]}</font> 
+
+			页，当前第 <font color="#68abc6">{$filter["cpage"]}</font> 页</span>
+			<span class="pagebtn">
+			
+			<a href="index.php?mod=admin&act=activity&cpage=1">首页</a> 
+			<a href="index.php?mod=admin&act=activity&cpage={$filter['fpage']}">上一页</a> 
+			<a href="index.php?mod=admin&act=activity&cpage={$filter['npage']}">下一页</a>
+			<a href="index.php?mod=admin&act=activity&cpage={$filter['lpage']}">末页</a>
+			 
+			 </span></div>
+
+		</div>
+		
+		
+
+	</div>
+
+
+</body>
+
+</html>

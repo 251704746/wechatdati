@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>修改密码</title>
+<link rel="stylesheet" type="text/css" href="{$dir}css/css.css" />
+<script type="text/javascript" src="{$dir}js/jquery.min.js"></script>
+<script type="text/javascript">
+function checkvalue()
+{
+	var bname = $("#bname").val();
+	if(bname == ""){
+		showform("请输入黑名单姓名");
+		return false;
+	}
+
+	$.post("index.php?mod=admin&act=holdblack",{
+		"bname":bname
+	},function(res){
+		window.location.reload();
+	});
+}
+
+function delblack(bid)
+{
+	$.post("index.php?mod=admin&act=delblack",{
+		"bid":bid
+	},function(res){
+		window.location.reload();
+	});
+}
+</script>
+</head>
+<body>
+	<div id="pageAll">
+		<div class="pageTop">
+			<div class="page pos">
+				当前位置：首页&nbsp;-&nbsp;会员管理&nbsp;-&nbsp;黑名单
+			</div>
+		</div>
+		<div class="page ">
+			<!-- 修改密码页面样式 -->
+			<div class="bacen">
+				<div class="blackarea">
+				{foreach from=$black item="list"}
+				<a href="javascript:;" onclick="delblack({$list['bid']})">
+				<div class="blackitem">
+				{$list['bname']}
+				</div> </a>
+				{/foreach}
+				</div>
+				<div class="bbD"><p style="color:#999">点击上面列表的姓名，可直接删除;添加实名黑名单,加入后，红包发奖会失败;</p>
+					<p class="bbDP">
+						<input type="text" id="bname" class="input3" name="bname" value=""/>
+						<button class="btn_ok btn_yes" onclick="checkvalue()">提交</button>
+					</p>
+					
+				</div>
+
+			</div>
+
+			<!-- 修改密码页面样式end -->
+		</div>
+	</div>
+{include file="info.html"}
+</body>
+
+</html>

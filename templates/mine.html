@@ -1,0 +1,109 @@
+{include file="header.html"}
+
+<script>
+	/*不同分辨率手机加载*/
+	var userScalable = "no";
+	var ins = "";var page =0;
+	(function () {
+		if (window.devicePixelRatio === 1.5) {
+			userScalable = "yes";
+			ins = "initial-scale=0.5"
+		}
+		var text = "<meta content='" + ins + ", target-densitydpi=device-dpi, width=640,user-scalable=" + userScalable + "' name='viewport'>";
+		document.write(text);
+	
+	})();
+	
+	var cpage = 1;
+	function getmine()
+	{
+		var tpage = '{$tpage}';
+		cpage = cpage + 1;
+
+		$.get("index.php?mod=index&act=utest",{
+			"cpage":cpage
+		},function(res){
+			var info = eval( "(" + res + ")" );
+			var mine = "";
+			for(var i=0;i<info.length;i++){
+				mine += '<a href="index.php?mod=index&act=mdetail&id='+info[i].tid+'">';
+				mine += '<div class="zjrow" style="font-size:13px;">';
+				mine += '<span class="zjreward">'+info[i].tscore+'</span>';
+				mine += '<span class="zjresult">'+info[i].daward+'</span>';
+				if(info[i].datime != null && info[i].dwin > 0){
+					mine += '<span class="zjstatus"><font color="grey">已领</font></span>';
+				}else if(info[i].dwin > 0){
+					mine += '<span class="zjstatus"><font color="red">未领</font></span>';
+				}else{
+					mine += '<span class="zjstatus">--</span>';
+				}
+				mine += '<span class="zjtime">'+info[i].dtime+'</span>';
+				mine += '</div></a>';
+				mine += '<div class="clear"></div>';
+			}
+			
+			$(".testlist").append(mine);
+			
+			if(tpage == cpage){
+				$("#dmore").html('<div class="umore" data-page="1" data-rname="">没有更多信息了</div>');
+			}
+		});
+	}
+	
+	
+</script>
+
+<div class="w640">  
+
+<div class="uheadearea">
+
+<div class="uheadimg">{if $uinfo['uheadimg']}<img src="{$uinfo['uheadimg']}"/>{else}<img src="{$dir}images/default.jpg"/>{/if}</div>
+
+<div class="uname">{$uinfo['username']}</div>
+
+</div>
+
+<div class="uinfobox">
+<div class="tlt">
+<span class="zjreward">得分</span>
+<span class="zjresult">抽中</span>
+<span class="zjstatus">状态</span>
+<span class="zjtime">时间</span>
+</div>
+<div class='clear'></div>
+<div class="myarea">
+
+{if $test}
+<div class="testlist">
+{foreach from=$test item="info" }
+<a href="index.php?mod=index&act=mdetail&id={$info.tid}">
+<div class="zjrow" style="font-size:13px;">
+<span class="zjreward">{$info.tscore}</span>
+<span class="zjresult">{$info.daward}</span>
+<span class="zjstatus">{if $info.datime neq '' and $info.dwin gt 0}<font color="grey">已领</font>{else if $info.dwin gt 0}<font color="red">未领</font>{else}--{/if}</span>
+<span class="zjtime">{$info.dtime}</span>
+</div>
+</a>
+<div class='clear'></div>
+{/foreach}
+</div>
+{if $tpage>1}
+<div id="dmore"><a href="javascript:;" onclick="getmine()"><div class="umore" data-page="1" data-rname="">加载更多...</div></a></div>
+{else}
+<div id="dmore"><div class="umore" data-page="1" data-rname="">没有更多信息了</div></div>
+{/if}
+{else}
+<div class="dnoinfo"><div data-page="1" data-rname="">还未有任何信息哦</div></div>
+{/if}
+</div>
+</div>
+<div style="height:180px"></div>
+{if $ulog['lttimes'] and $ulog['ldraws']}<div class="myfloat">您已答题{$ulog['lttimes']}次，抽奖抽中 {$ulog['ldraws']} 次 ！</div>
+{else if $ulog['lttimes'] and !$ulog['ldraws']}<div class="myfloat">您已答题{$ulog['lttimes']}次，还未中奖，继续加油！</div>
+{else}<div class="myfloat">您还未答题，请先参与答题再进行抽奖哦！</div>{/if}
+</div>
+
+{include file="nav.html"}
+{include file="footer.html"}
+</body>
+</html>

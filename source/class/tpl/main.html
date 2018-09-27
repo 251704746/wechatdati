@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>后台首页</title>
+<link rel="stylesheet" type="text/css" href="{$dir}css/css.css" />
+<script type="text/javascript" src="{$dir}js/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="js/page.js" ></script> -->
+</head>
+
+<body>
+	<div id="pageAll">
+		<div class="pageTop">
+			<div class="page pos">
+				当前位置：首页&nbsp;-&nbsp;控制面板
+			</div>
+		</div>
+
+		<div class="page">
+			<!-- user页面样式 -->
+			<div class="connoisseur">
+				<!-- user 表格 显示 -->
+				<div class="conShow">
+					<div class="dbtable">
+					<table cellspacing="1" cellpadding="3"><tbody>
+					<tr><th colspan="4" class="dbtitle">管理信息</th></tr>
+					<tr><td width="20%" class="tdColor tdC">总活动数:</td><td width="30%">{$manageinfo['cactivity']}</td>
+					<td width="20%" class="tdColor tdC">总访问量:</td><td width="30%">{$manageinfo['sviews']}</td></tr>
+					<tr><td class="tdColor tdC">总用户数:</td><td>{$manageinfo['cusers']}</td><td class="tdColor tdC">总题数:</td><td>{$manageinfo['subjects']}</td></tr>
+
+					</tbody>
+					</table>
+					</div>
+
+
+					<div class="dbtable">
+					<table cellspacing="1" cellpadding="3"><tbody>
+					<tr><th colspan="4" class="dbtitle">系统信息</th></tr>
+					<tr><td width="20%" class="tdColor tdC">服务器操作系统:</td><td width="30%">{$sysinfo['sys']}</td>
+					<td width="20%" class="tdColor tdC">语言:</td><td width="30%">{$sysinfo['language']}</td>
+					</tr>
+					<tr><td class="tdColor tdC">Apache 版本:</td><td>{$sysinfo["apacheversion"]}</td><td class="tdColor tdC">Zend 版本:</td><td>{$sysinfo['zendversion']}</td></tr>
+					<tr><td class="tdColor tdC">PHP 版本:</td><td>{$sysinfo["phpversion"]}</td><td class="tdColor tdC">MySQL 版本:</td><td>{$sysinfo['mysqlversion']}</td></tr>
+					<tr><td class="tdColor tdC">GD 版本:</td><td>{$sysinfo['gdversion']}</td><td class="tdColor tdC">时区设置:</td><td>{$sysinfo['prc']}</td></tr>
+					<tr><td class="tdColor tdC">服务器地址:</td><td>{$sysinfo['host']}</td><td class="tdColor tdC">服务器端口:</td><td>{$sysinfo['port']}</td></tr>
+					<tr><td class="tdColor tdC">脚本运行占用最大内存 :</td><td>{$sysinfo['memorylimit']}</td><td class="tdColor tdC">文件上传的最大大小:</td><td>{$sysinfo['maxuploadfile']}</td></tr>
+					<tr><td class="tdColor tdC">安全模式 :</td><td>{$sysinfo['safemode']}</td><td class="tdColor tdC">系统时间:</td><td>{$sysinfo['time']}</td></tr>
+					</tbody>
+					</table>
+					</div>
+				</div>
+				<!-- user 表格 显示 end-->
+			</div>
+			<!-- user页面样式end -->
+		</div>
+
+	</div>
+
+
+</body>
+
+</html>

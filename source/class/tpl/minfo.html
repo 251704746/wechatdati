@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>消息中心</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<link rel="stylesheet" type="text/css" href="{$dir}css/css.css" />
+<script type="text/javascript" src="{$dir}js/jquery.min.js"></script>
+</head>
+<body>
+
+<script>
+function returnpage()
+{
+	window.location.href=document.referrer;
+}
+
+window.setTimeout("returnpage()", 3000); 
+
+function countDown()
+{
+	var time = parseInt($("#time").text());
+
+	if(time>=0)
+	time--;
+	
+	$("#time").text(time);
+}
+
+timer = setInterval('countDown()',1000);
+</script>
+<div id="header">
+<h1 class="title">消息中心</h1>
+</div>
+	<div id="pageAll">
+		<div class="page ">
+		<div class="infoarea">
+
+			<div class="infos">{$info},<label id="time" style="color:red">3</label>秒后返回上级页面！您也可以手动点击 <a href="javascript:;" onclick="returnpage()">这里</a> 返回。</div>
+
+		</div>
+		</div>
+</div>
+</body>

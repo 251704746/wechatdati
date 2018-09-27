@@ -1,0 +1,79 @@
+﻿
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>答题管理</title>
+<link rel="stylesheet" type="text/css" href="{$dir}css/css.css" />
+<script type="text/javascript" src="{$dir}js/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="js/page.js" ></script> -->
+<script type="text/javascript">
+function chaxun()
+{
+	var susername = $("#susername").val();
+	window.location.href = "index.php?mod=admin&act=test&aid={$aid}&susername="+susername;
+}
+</script>
+</head>
+
+<body>
+	<div id="pageAll">
+		<div class="pageTop">
+			<div class="page pos">
+				当前位置：首页&nbsp;-&nbsp;会员管理&nbsp;-&nbsp;答题列表
+			</div>
+		</div>
+
+		<div class="page">
+			<!-- user页面样式 -->
+			<div class="connoisseur">
+				<!-- user 表格 显示 -->
+				<div class="conShow">
+				
+				<div class="tableheader">
+				<span class="lheader"><label>会员名称：</label><input type="text" id="susername" class="input3" value="{$susername}"/>
+				<button class="btn" onclick="chaxun()">查询</button></span>
+				</div>
+				
+					<table border="1" cellspacing="0" cellpadding="0">
+						<tr>
+							<td width="5%" class="tdColor tdC">序号</td>
+							<td width="20%" class="tdColor">用户名</td>
+							<td width="25%" class="tdColor">分值</td>
+							<td width="25%" class="tdColor">答题比例（答对题数/总题数）</td>
+							<td width="25%" class="tdColor">添加时间</td>
+						</tr>
+						{foreach from=$test item="infos"}
+						<tr height="40px">
+							<td>{$infos['tid']}</td>
+							<td>{$infos['username']}</td>
+							<td>{$infos['tscore']}</td>
+							<td>{$infos['tscale']}</td>
+							<td>{$infos['ttime']}</td>
+						</tr>
+						{/foreach}
+					</table>
+					<div class="page_area">
+
+					<span class="pageinfo">共 <font color="#68abc6">{$filter["total"]}</font> 条记录，分 <font color="#68abc6">{$filter["tpage"]}</font> 
+
+					页，当前第 <font color="#68abc6">{$filter["cpage"]}</font> 页</span>
+					<span class="pagebtn">
+					
+					<a href="index.php?mod=admin&act=test&cpage=1&aid={$aid}">首页</a> 
+					<a href="index.php?mod=admin&act=test&cpage={$filter['fpage']}&aid={$aid}">上一页</a> 
+					<a href="index.php?mod=admin&act=test&cpage={$filter['npage']}&aid={$aid}">下一页</a>
+					<a href="index.php?mod=admin&act=test&cpage={$filter['tpage']}&aid={$aid}">末页</a>
+					 
+					 </span></div>
+				</div>
+				<!-- user 表格 显示 end-->
+			</div>
+			<!-- user页面样式end -->
+		</div>
+
+	</div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+[2018-08-02 10:24:09][debug] error（DID:10）:参数错误：输入的商户号有误
+[2018-08-02 10:24:46][debug] error（DID:10）:参数错误：输入的商户号有误
+[2018-08-02 10:29:19][debug] error（DID:10）:参数错误：输入的商户号有误
+[2018-08-02 10:31:22][debug] error（DID:13）:<xml>
+<return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[参数错误：输入的商户号有误]]></return_msg>
+<result_code><![CDATA[FAIL]]></result_code>
+<err_code><![CDATA[PARAM_ERROR]]></err_code>
+<err_code_des><![CDATA[参数错误：输入的商户号有误]]></err_code_des>
+</xml>
+[2018-08-02 10:33:30][debug] error（DID:14）:参数错误：输入的商户号有误
+[2018-08-02 10:56:40][debug] error（DID:10）:商户号与商户appid不匹配
+[2018-08-02 10:57:36][debug] error（DID:10）:openid与商户appid不匹配
+[2018-08-02 11:28:39][debug] error（DID:15）:获取用户OPENID信息有误
+[2018-08-02 11:29:14][debug] error（DID:15）:获取用户OPENID信息有误
+[2018-08-02 11:31:30][debug] error（DID:15）:获取用户OPENID信息有误
+[2018-08-02 11:32:08][debug] error（DID:15）:获取用户OPENID信息有误
+[2018-08-02 11:34:07][debug] error（DID:15）:获取用户OPENID信息有误
+[2018-08-02 17:14:11][debug] error（DID:17）:支付失败
+[2018-08-02 17:15:23][debug] error（DID:17）:支付失败
+[2018-08-02 17:17:06][debug] error（DID:17）:支付失败
+[2018-08-02 17:19:15][debug] error（DID:17）:支付失败
+[2018-08-02 17:20:13][debug] error（DID:17）aaaaa:支付失败
+[2018-08-02 17:22:03][debug] error（DID:17）aaaaa:支付失败
+[2018-08-02 17:22:13][debug] error（DID:17）aaaaa:支付失败
+[2018-08-02 17:31:28][debug] error（DID:17）:支付失败
+[2018-08-02 17:31:42][debug] error（DID:17）:支付失败
+[2018-08-02 17:32:04][debug] error（DID:17）:支付失败
+[2018-08-02 17:32:23][debug] error（DID:17）:支付失败
+[2018-08-02 17:33:18][debug] error（DID:17）:<xml>
+<return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[支付失败]]></return_msg>
+<mch_appid><![CDATA[wx62118aad8c8d0653]]></mch_appid>
+<mchid><![CDATA[1333642601]]></mchid>
+<result_code><![CDATA[FAIL]]></result_code>
+<err_code><![CDATA[SENDNUM_LIMIT]]></err_code>
+<err_code_des><![CDATA[该用户今日付款次数超过限制,如有需要请登录微信支付商户平台更改API安全配置.]]></err_code_des>
+</xml>
+[2018-08-02 17:35:15][debug] error（DID:17）:<xml>
+<return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[支付失败]]></return_msg>
+<mch_appid><![CDATA[wx62118aad8c8d0653]]></mch_appid>
+<mchid><![CDATA[1333642601]]></mchid>
+<result_code><![CDATA[FAIL]]></result_code>
+<err_code><![CDATA[SENDNUM_LIMIT]]></err_code>
+<err_code_des><![CDATA[该用户今日付款次数超过限制,如有需要请登录微信支付商户平台更改API安全配置.]]></err_code_des>
+</xml>
+[2018-08-02 17:36:18][debug] error（DID:17）:该用户今日付款次数超过限制,如有需要请登录微信支付商户平台更改API安全配置.
+[2018-08-02 17:37:04][debug] error（DID:17）:该用户今日付款次数超过限制,如有需要请登录微信支付商户平台更改API安全配置.
+[2018-08-02 17:38:26][debug] error（DID:17）:该用户今日付款次数超过限制,如有需要请登录微信支付商户平台更改API安全配置.
+[2018-08-02 17:39:20][debug] error（DID:17）:该用户今日付款次数超过限制,如有需要请登录微信支付商户平台更改API安全配置.
+[2018-08-02 17:43:58][debug] error（DID:17）:该用户今日付款次数超过限制,如有需要请登录微信支付商户平台更改API安全配置.
+[2018-08-02 18:37:25][debug] error（DID:18）:
+[2018-08-02 18:47:02][debug] error（DID:19）:该用户今日付款次数超过限制,如有需要请登录微信支付商户平台更改API安全配置.
+[2018-08-02 19:58:18][debug] error（DID:19）:该用户今日付款次数超过限制,如有需要请登录微信支付商户平台更改API安全配置.

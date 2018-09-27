@@ -1,0 +1,228 @@
+{include file="header.html"}
+<script>
+	/*不同分辨率手机加载*/
+	var userScalable = "no";
+	var ins = "";
+	(function () {
+		if (window.devicePixelRatio === 1.5) {
+			userScalable = "yes";
+			ins = "initial-scale=0.5"
+		}
+		var text = "<meta content='" + ins + ", target-densitydpi=device-dpi, width=640,user-scalable=" + userScalable + "' name='viewport'>";
+		document.write(text);
+	})();
+	
+function close_popup()
+{
+	$(".fullscreen").hide();
+	$(".popup").hide();
+}
+
+function redpacket()
+{
+	var ppacket = "{$draw['ppacket']}";
+	var did = "{$draw['did']}";
+	var daonum = "{$draw['daonum']}";
+	var formhash = "{$formhash}";
+
+	//window.location.href="index.php?mod=index&act=handout&money=" + ppacket + "&did=" + did + "&formhash="+formhash+"&daonum="+daonum;
+	$.post("index.php?mod=index&act=uhandout",{
+		"money":ppacket,"did":did,"formhash":formhash,"daonum":daonum
+	},function(res){
+		var info = eval("("+res+")");
+		show_popuptip(info.info);
+	});
+}
+
+function usubmit(ptype)
+{
+	if(ptype == 2){
+		var aredpacket = "{$activity['aredpacket']}";
+		redpacket();
+	}else if( ptype == 1){
+		var dcode = "{$draw['dcode']}";
+
+		$.post("index.php?mod=index&act=mkqrcode",{
+			"dcode":dcode
+		},function(res){
+			$(".hexiaothumb").html('<img src="source/qrcode/'+res+'"/>');
+			$(".fullscreen").show();
+			$(".hexiaobox").show();
+		});
+	}
+}
+
+function save_userinfo()
+{
+	var name = $("#name").val();
+	var telphone = $("#telphone").val();
+	var ptype = $("#ptype").val();
+
+	if(name == "" || telphone == ""){
+		show_tip("请填写您的姓名和手机号码等信息，此信息用于兑奖，请认真填写！");
+		return false;
+	}
+
+	/*
+	var myreg = /^[1][3,4,5,7,8][0-9]{9}$/;  
+
+	if(!(myreg.test(telphone))){
+		show_tip("您输入的手机号码有误，此信息用于兑奖，请认真填写！");
+		return false;
+	}*/
+	
+	if(telphone.length != 11){
+		show_tip("您输入的手机号码有误，此信息用于兑奖，请认真填写！");
+		return false;
+	}
+
+	$.post("index.php?mod=index&act=save_userinfo",{
+		"name":name,"telphone":telphone
+	},function(res){
+		close_popup();
+		usubmit(ptype);
+	});
+}
+
+</script>
+
+<div class="w640">  
+<div id="header">
+<a href="javascript:history.go(-1);" class="back"></a><h1 class="title">详情</h1>
+</div>
+<div class="udetail">
+<div class="utestbox">
+	<div class="utestarea">
+	<div class="utesttime">答题时间：<label>{$test['ttime']}<label></div>
+	<div class="utestcontent">总题数: <font color="red"><b>{$test['total']}</b></font> 题，
+	答对: <font color="red"><b>{$test['num']}</b></font> 题，得分: <font color="red"><b>{$test['tscore']}</b></font> 分</div>
+	</div>
+</div>
+
+<div class="uawardbox">
+	<div class="uawardtitle">抽奖情况</div>
+	<div class="uawardarea">
+	{if $test['did'] lte 0}
+		<div class="nodata">未参与抽奖</div>
+	{else if $draw['dwin'] <= 0}
+		<div class="uawardtime">抽奖时间：{$draw['dtime']}</div>
+		<div class="nodata">您本次抽奖未抽中</div>
+	{else}
+		<div class="uawardtime">抽奖时间：{$draw['dtime']}</div>
+		<div class="uawardcontent">
+			<div class="prizebox">
+			<span class="pthumb"><img src="upload/prizes/{$draw['pthumb']}"/></span>
+			<span class="pinfo">
+				<div class="pinforow">{$draw['daward']}</div>
+				<div class="pinforow">{$draw['dname']}</div>
+			</span>
+			</div>
+			<div class="clear"></div>
+			{if $draw['datime']}
+			<div class="pstatebar">
+				<span class="pstatus">已领取</span><span class="ptime">{$draw['datimes']}</span>
+			</div>
+			{else}
+			{if $draw['ptype'] == 1}
+				<div class="pstatebar"><a href="javascript:;" onclick="lingqu(1)">点击核销</a></div>
+			{else}
+				<div class="pstatebar"><a href="javascript:;" onclick="lingqu(2)">点击领取</a></div>	
+			{/if}
+			{/if}
+		</div>
+	{/if}
+	</div>
+</div>
+</div>
+
+<input type="hidden" id="ptype" value=""/>
+<div class="popup">
+<div class="popuprow poptips">以下信息用作兑奖，请认真填写，若由于信息不正确而影响兑奖自行负责，谢谢合作！</div>
+<div class="popuprow"><label>您的姓名：</label><input type="text" id="name" onfocus="close_tip()"/></div>
+<div class="popuprow"><label>联系电话：</label><input type="text" id="telphone" maxlength="11" onfocus="close_tip()"/></div>
+<div class="popuprow"><a href="javascript:;" onclick="save_userinfo()"><span class="popupbtn psubmit">确 认</span></a>
+<a href="javascript:;" onclick="close_popup()"><span class="popupbtn">取 消</span></a></div>
+</div>
+
+<div class="hexiaobox">
+<div class="hexiaorow">核销码：{$draw['dcode']}</div>
+<div class="hexiaothumb"></div>
+</div>
+
+{include file="footer.html"}
+<script type="text/javascript">
+
+function hidebox()
+{
+	$(".fullscreen").hide();
+	$(".popup").hide();
+	$(".hexiaobox").hide();
+}
+
+function lingqu(ptype)
+{
+	var deadline = "{$activity['adeadline']}";
+	var myDate = new Date().getTime();	
+
+	var timestamp = Date.parse(new Date(deadline));
+	if(myDate > timestamp){
+		show_popuptip("领奖截止时间为："+deadline+" ,您已经错过领奖时间了！");
+		return;
+	}
+	
+	$("#ptype").val(ptype);
+	$.post("index.php?mod=index&act=guserinfo",{},function(res){
+		var uinfo = eval("("+ res +")");
+		
+		var name = uinfo.name;
+		
+		if(name == "" || name == null){	
+			$(".fullscreen").show();
+			$(".popup").show();
+		}else{
+			usubmit(ptype);
+		}
+	});
+}
+
+function close_popuptip()
+{
+	$(".fullscreen").hide();
+	$(".popuptip").hide();
+}
+
+function show_popuptip(tip,btn="")
+{
+	$(".popuptips").html(tip);
+	if(btn){
+		$(".popubtn").html(btn);
+	}else{
+		$(".popubtn").html('<a href="javascript:;" onclick="close_popuptip()"><div class="popuptipbtn">确 认</div></a>');
+	}
+	
+	$(".fullscreen").show();
+	$(".popuptip").show();
+}
+
+function close_tip()
+{
+	$(".popuptip").hide();
+}
+
+function show_tip(tip,btn="")
+{
+	$(".popuptips").html(tip);
+	if(btn){
+		$(".popubtn").html(btn);
+	}else{
+		$(".popubtn").html('<a href="javascript:;" onclick="close_tip()"><div class="popuptipbtn">确 认</div></a>');
+	}
+	
+	$(".fullscreen").show();
+	$(".popuptip").show();
+}
+
+</script>
+
+</body>
+</html>

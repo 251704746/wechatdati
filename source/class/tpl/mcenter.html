@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>商户核销系统</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<link rel="stylesheet" type="text/css" href="{$dir}css/css.css?v=13" />
+<script type="text/javascript" src="{$dir}js/jquery.min.js"></script>
+</head>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.1.0.js"> </script> 
+
+<script type="text/javascript">
+
+wx.config({  
+    debug: false,
+    appId: "{$signPackage['appId']}",  
+	timestamp: "{$signPackage['timestamp']}",  
+	nonceStr: "{$signPackage['nonceStr']}",  
+	signature: "{$signPackage['signature']}",  
+    jsApiList: ['checkJsApi',
+                'chooseImage',
+                'previewImage',
+                 'uploadImage',
+                 'downloadImage',
+                  'getNetworkType',//网络状态接口
+                  'openLocation',//使用微信内置地图查看地理位置接口
+                  'getLocation', //获取地理位置接口
+                  'hideOptionMenu',//界面操作接口1
+                  'showOptionMenu',//界面操作接口2
+                  'closeWindow' ,  ////界面操作接口3
+                  'hideMenuItems',////界面操作接口4
+                  'showMenuItems',////界面操作接口5
+                  'hideAllNonBaseMenuItem',////界面操作接口6
+                  'showAllNonBaseMenuItem',////界面操作接口7
+                  'scanQRCode'// 微信扫一扫接口
+               ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2  
+});
+
+function scanQR(){
+
+	wx.scanQRCode();
+}
+
+function verification()
+{
+	var dcode = $("#dcode").val();
+	
+	window.location.href="index.php?mod=admin&act=verification&dcode="+dcode;
+}
+
+</script>
+
+
+<body style="background:#f8f8f8">
+<section class="home zzpt">
+  <div class="logo">
+	<div class="atitle">{$minfo['atitle']}</div>
+	<p><span class="aleft">参与人数：{$minfo['ausers']}</span><span class="aright"> 浏览量：{$minfo['aviews']}</span></p>
+	<div class="uclear"></div>
+  </div>
+	<div class="cxbox"><div class="cxrow"><label class="text_label">核销码</label>
+	<input type="text" class="text_input" value="" id="dcode" name="dcode"  placeholder="核销码">
+	<span class="mbtn" onclick="verification()">核销</span></div>
+	<div class="uclear"></div></div>
+  <ul class="nav clearfix">
+	<li class="last"><a href="javascript:;" id="scanQRCode0" onclick="scanQR()" class="l3">扫码核销</a></li>
+    <li><a href="index.php?mod=admin&act=meditpwd" class="l1">密码管理</a></li>
+    <li><a href="index.php?mod=admin&act=mlogout" class="l2">退出系统</a></li>
+    
+  </ul>
+</section>
+
+</body>
+</html>

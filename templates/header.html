@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$pageinfo['title']}</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta content='target-densitydpi=device-dpi, width=640' name='viewport'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="white">
+<meta name="format-detection" content="telephone=no">   
+<link href="{$dir}style/css.css?v=13" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="{$dir}style/styleCJ.css?v=1"/>
+<script type="text/javascript" src="{$dir}js/jquery-1.8.3.js"></script>  
+<script src="{$dir}js/common.js"></script>
+</head>
+{if $activity['abthumb']}
+<body style="background:url('upload/{$activity['abthumb']}') no-repeat center top; background-size: cover;">
+{else}
+<body style="background:url('{$dir}images/mainbg.jpg') no-repeat center top;background-size: cover;">
+{/if}

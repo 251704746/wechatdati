@@ -1,0 +1,323 @@
+{include file="header.html"}
+<script>
+	/*不同分辨率手机加载*/
+	var userScalable = "no";
+	var ins = "";
+	(function () {
+		if (window.devicePixelRatio === 1.5) {
+			userScalable = "yes";
+			ins = "initial-scale=0.5"
+		}
+		var text = "<meta content='" + ins + ", target-densitydpi=device-dpi, width=640,user-scalable=" + userScalable + "' name='viewport'>";
+		document.write(text);
+	})();
+$(document).ready(function(){
+	
+	$("#q1").show();
+
+})
+
+
+function uaward()
+{
+	var stotal = "{$stotal}";
+	if(stotal == 0){
+		show_popuptip("本次抽奖活动已经结束，谢谢您的参与！");
+		return false;
+	}else{
+		window.location.href="index.php?mod=index&act=award";
+	}
+}
+
+function uselect(qcid,qid,qtype)
+{
+	if(qtype == 1){
+		$("#"+qid).children().css({
+			"background":"#eee","color":"#888"
+		});
+		$("#prow" + qcid).css({
+			"background":"#e0b507","color":"#fff"
+		});
+		
+	}else{
+		if($('#rd' + qcid).is(':checked')){
+			$("#prow" + qcid).css({
+				"background":"#e0b507","color":"#fff"
+			});
+		}else{
+			$("#prow" + qcid).css({
+				"background":"#eee","color":"#888"
+			});
+		}
+	}
+}
+
+function checkTime(i) {
+	if (i < 10) {
+		i = "0" + i;
+	}
+	return i;
+}
+var clock,nclock,atimeout=0;
+function aclock(id)
+{
+	var num=15;
+	$(".c"+id).html(checkTime(num));
+	clock = setInterval(function() {
+		num--;
+		$(".c"+id).html(checkTime(num));
+		if(num==0){
+			clearInterval(clock);
+			atimeout = 1;
+			var i = parseInt(id) - 1;
+			document.getElementById("b"+id).click();
+		}
+	}, 1000);
+}
+
+function fnext(id)
+{
+	var num=5;
+	$(".uanswer"+id).html("<font color='#c6a009'>"+ checkTime(num) +"</font> 秒后自动跳转到下一题");
+	atimeout = 0;
+	nclock = setInterval(function() {
+		num--;
+		$(".uanswer"+id).html("<font color='#c6a009'>"+ checkTime(num) +"</font> 秒后自动跳转到下一题");
+		if(num==0){
+			clearInterval(nclock);
+			unext(id);
+		}
+	}, 1000);
+}
+
+aclock(1);
+</script>
+
+<div id="answer" class="w640">
+<div class="tbom"></div>
+	{foreach from=$subject item="sub" name='foo'}
+	<div id="q{$smarty.foreach.foo.iteration}" style="display:none">
+		<div class="clockbox c{$smarty.foreach.foo.iteration}"></div>
+		<div class="content_tl" style="min-height:450px"> 
+			<p class="content_tl_t">第<font color="yellow"> {$smarty.foreach.foo.iteration} </font> 题</p>
+			<p >{$sub['stitle']}</p>
+			<div class="qcbox" id="qcbox{$smarty.foreach.foo.iteration}">
+			<div class="prow" id="prow{$smarty.foreach.foo.iteration}_1"><span>
+			<input id="rd{$smarty.foreach.foo.iteration}_1" onchange="uselect('{$smarty.foreach.foo.iteration}_1','qcbox{$smarty.foreach.foo.iteration}',{$sub.stype})" 
+			name="rd{$smarty.foreach.foo.iteration}" {if $sub.stype eq 1} type="radio" {else}type="checkbox" {/if} value="A"></span>
+			<label for="rd{$smarty.foreach.foo.iteration}_1">{$sub.soption1}</label></div>
+			<div class="prow"  id="prow{$smarty.foreach.foo.iteration}_2" ><span>
+			<input id="rd{$smarty.foreach.foo.iteration}_2" onchange="uselect('{$smarty.foreach.foo.iteration}_2','qcbox{$smarty.foreach.foo.iteration}',{$sub.stype})"
+			name="rd{$smarty.foreach.foo.iteration}" {if $sub.stype eq 1} type="radio" {else}type="checkbox" {/if} value="B"></span>
+			<label for="rd{$smarty.foreach.foo.iteration}_2">{$sub.soption2}</label></div>  
+			{if $sub['soption3']}<div class="prow" id="prow{$smarty.foreach.foo.iteration}_3" ><span>
+			<input id="rd{$smarty.foreach.foo.iteration}_3" onchange="uselect('{$smarty.foreach.foo.iteration}_3','qcbox{$smarty.foreach.foo.iteration}',{$sub.stype})"
+			name="rd{$smarty.foreach.foo.iteration}" {if $sub.stype eq 1} type="radio" {else}type="checkbox" {/if} value="C"></span>
+			<label for="rd{$smarty.foreach.foo.iteration}_3">{$sub.soption3}</label></div>{/if}
+			{if $sub['soption4']}<div class="prow" id="prow{$smarty.foreach.foo.iteration}_4" ><span>
+			<input id="rd{$smarty.foreach.foo.iteration}_4" onchange="uselect('{$smarty.foreach.foo.iteration}_4','qcbox{$smarty.foreach.foo.iteration}',{$sub.stype})"
+			name="rd{$smarty.foreach.foo.iteration}" {if $sub.stype eq 1} type="radio" {else}type="checkbox" {/if} value="D"></span>
+			<label for="rd{$smarty.foreach.foo.iteration}_4">{$sub.soption4}</label></div> {/if}	
+			{if $sub['soption5']}<div class="prow" id="prow{$smarty.foreach.foo.iteration}_5" ><span>
+			<input id="rd{$smarty.foreach.foo.iteration}_5" onchange="uselect('{$smarty.foreach.foo.iteration}_5','qcbox{$smarty.foreach.foo.iteration}',{$sub.stype})"
+			name="rd{$smarty.foreach.foo.iteration}" {if $sub.stype eq 1} type="radio" {else}type="checkbox" {/if} value="E"></span>
+			<label for="rd{$smarty.foreach.foo.iteration}_5">{$sub.soption5}</label></div>{/if}
+			{if $sub['soption6']}<div class="prow" id="prow{$smarty.foreach.foo.iteration}_6" ><span>
+			<input id="rd{$smarty.foreach.foo.iteration}_6" onchange="uselect('{$smarty.foreach.foo.iteration}_6','qcbox{$smarty.foreach.foo.iteration}',{$sub.stype})"
+			name="rd{$smarty.foreach.foo.iteration}" {if $sub.stype eq 1} type="radio" {else}type="checkbox" {/if} value="F"></span>
+			<label for="rd{$smarty.foreach.foo.iteration}_6">{$sub.soption6}</label></div> {/if}				
+			</div>
+			<div class="clear"></div>
+		 </div>
+		<div id="msg{$smarty.foreach.foo.iteration}" class="no_choice" style="display:none;">您还没选择！</div>
+		<div class="enter_btn"><a id="b{$smarty.foreach.foo.iteration}" href="javascript:void(0);"
+		onclick="usubmit({$smarty.foreach.foo.iteration},{$sub.stype},'{$sub.sanswer}','{$smarty.foreach.foo.last}')">确定</a></div>
+	</div>
+	<div id="a{$smarty.foreach.foo.iteration}" style="display:none;">
+		<div class="content_tljd">
+		<p>正确解答：{$sub['sanswers']} </p>
+			<span id="r{$smarty.foreach.foo.iteration}" class="right" style="display:none;"></span>
+			<span id="w{$smarty.foreach.foo.iteration}" class="wrong" style="display:none;"></span>
+			
+		</div>
+		
+		{if $smarty.foreach.foo.last}<div class="enter_btn">
+		<a id="next{$smarty.foreach.foo.iteration}" href="#" onclick="uresult({$activity['asnum']},{$activity['acondition']})">查看结果</a></div>
+		{else}
+		<div class="enter_btn"><a id="next{$smarty.foreach.foo.iteration}" href="#" onclick="unext({$smarty.foreach.foo.iteration})">下一题</a></div>
+			<div class="uanswer uanswer{$smarty.foreach.foo.iteration}"></div>
+		{/if}
+	</div>	
+	{/foreach}
+<div class="bbom"></div>
+</div>
+
+
+<div id="score" class="w640" style="display:none;">
+	<header>
+		<div id="fs"></div>
+		<div id="uscore"></div>
+	</header>
+	
+	<a href="javascript:;" onclick="uaward()"><div class="hm_btn choujiang"><div class="btn_bg ">我要抽奖</div></div></a>
+	<a href="index.php?mod=index&act=subject"><div class="hm_btn"><div class="btn_bg">继续答题</div></div></a>
+</div>
+
+{include file="nav.html"}
+{include file="footer.html"}
+<div class="organization">{$activity['aorganization']}</div>
+<script type="text/javascript">
+	var ucorrect = 0;
+	var tid = 0;
+	
+	window.onbeforeunload = function(e){
+		$.post("index.php?mod=index&act=close_test",{
+			"tid":tid
+		},function(res){
+		
+		});
+	};
+	
+	function usubmit(uid,utype,uanswer,last)
+	{
+		clearInterval(clock);
+		if(utype == 1){
+			var uval = $('input:radio[name="rd'+uid+'"]:checked').val();
+			if (uval == null && atimeout == 0) {
+				$("#msg"+uid).fadeIn(500);
+			}
+			else {
+				
+				setTimeout('$("#q'+uid+'").fadeOut(100);', 1);
+				setTimeout('$("#a'+uid+'").fadeIn(1000);', 100);
+				
+				if (uval == uanswer) {
+					ucorrect ++;
+					setTimeout('$("#r'+uid+'").slideDown()', 500);
+				}
+				else {
+					setTimeout('$("#w'+uid+'").slideDown()', 500);
+				}
+				
+				var unum = "{$activity['asnum']}";
+				var correct = ucorrect/unum;
+		
+				var ucorrects = ( correct * 100 ).toFixed(0);
+				
+				var tscale = ucorrect + "/" + unum;
+				var formhash = '{$formhash}';
+				
+				$.post("index.php?mod=index&act=action_itest",{
+					"tid":tid,'tscore':ucorrects,'tscale':tscale,formhash:formhash
+				},function(res){
+					var info = eval("("+ res +")");
+					if(info.code < 0 ){
+						show_popuptip(info.info,'<a id="uisubmit" href="index.php?mod=index&act=subject&aid={$aid}" ><div class="popuptipbtn">确 认</div></a>');
+					}else{
+						tid = info.info;
+					}
+				});
+				if(!last){
+					fnext(uid);
+				}
+			}
+			
+			$('input:radio[name="rd'+uid+'"]').attr("checked",false);
+			
+		}else{
+		
+			var uvals = $('input:checkbox[name="rd'+uid+'"][checked]');
+			if (uvals.length == 0 && atimeout == 0) {
+				$("#msg"+uid).fadeIn(500);
+			}
+			else {
+				setTimeout('$("#q'+uid+'").fadeOut(100);', 1);
+				setTimeout('$("#a'+uid+'").fadeIn(1000);', 100);
+				
+				var uval = '';
+				$('input[name="rd'+uid+'"]:checked').each(function(){ 
+					uval += $.trim($(this).val()); 
+				}); 
+				
+				if (uval == uanswer) {
+					ucorrect ++;
+					setTimeout('$("#r'+uid+'").slideDown()', 500);
+				}
+				else {
+					setTimeout('$("#w'+uid+'").slideDown()', 500);
+				}
+				
+				var unum = "{$activity['asnum']}";
+				var correct = ucorrect/unum;
+		
+				var ucorrects = ( correct * 100 ).toFixed(0);
+				
+				var tscale = ucorrect + "/" + unum;
+				var formhash = '{$formhash}';
+				
+				$.post("index.php?mod=index&act=action_itest",{
+					"tid":tid,'tscore':ucorrects,'tscale':tscale,formhash:formhash
+				},function(res){
+					var info = eval("("+ res +")");
+					
+					if(info.code < 0 ){
+						show_popuptip(info.info,'<a id="uisubmit" href="index.php?mod=index&act=subject&aid={$aid}" ><div class="popuptipbtn">确 认</div></a>');
+					}else{
+						tid = info.info;
+					}
+				});
+				if(!last){
+					fnext(uid);
+				}
+			}
+			$('input:radio[name="rd'+uid+'"]').attr("checked",false);
+		}
+		
+	}
+	
+	function unext(uid)
+	{
+		clearInterval(nclock);
+		clearInterval(clock);
+		var next = uid + 1;
+		setTimeout('$("#a'+uid+'").fadeOut(100);', 1);
+		setTimeout('$("#q'+next+'").fadeIn(1000);', 100);
+		aclock(next);
+	}
+	
+	function uresult(unum,ucondition)
+	{
+		clearInterval(clock);
+		clearInterval(nclock);
+		setTimeout('$("#answer").fadeOut(100);', 1);
+		setTimeout('$("#score").fadeIn(1000);', 100);
+
+		var correct = ucorrect/unum;
+		
+		ucorrects = ( correct * 100 ).toFixed(0);
+		
+		var tscale = ucorrect + "/" + unum;
+		var formhash = '{$formhash}';
+		$.post("index.php?mod=index&act=action_test",{
+			"tid":tid,'tscore':ucorrects,'tscale':tscale,formhash:formhash
+		},function(res){
+			var info = eval("("+ res +")");
+					
+			if(info.code < 0 ){
+				show_popuptip(info.info,'<a id="uisubmit" href="index.php?mod=index&act=subject&aid={$aid}" ><div class="popuptipbtn">确 认</div></a>');
+				return;
+			}
+		});
+		
+		if(correct >= ucondition){
+			$('#fs').html('<img src="{$dir}images/win.png" />');
+			$(".choujiang").show();
+		}else{
+			$('#fs').html('<img src="{$dir}images/lose.png" />');
+		}
+		$("#uscore").html(ucorrects+'分');
+	}
+	
+</script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>首页左侧导航</title>
+<link rel="stylesheet" type="text/css" href="{$dir}css/public.css" />
+<script type="text/javascript" src="{$dir}js/jquery.min.js"></script>
+<script type="text/javascript" src="{$dir}js/public.js"></script>
+<head></head>
+
+<body id="bg">
+	<!-- 左边节点 -->
+	<div class="container">
+
+		<div class="leftsidebar_box">
+			<a href="index.php?mod=admin&act=main" target="main"><div class="line">
+					<img src="{$dir}img/coin02.png" />&nbsp;&nbsp;首页
+				</div></a>
+
+			<dl class="system_log">
+				<dt>
+					<img class="icon1" src="{$dir}img/coinL1.png" /><img class="icon2"
+						src="{$dir}img/coinL2.png" /> 系统管理<img class="icon3"
+						src="{$dir}img/coin19.png" /><img class="icon4"
+						src="{$dir}img/coin20.png" />
+				</dt>
+			
+				<dd>
+					<img class="coin11" src="{$dir}img/coin111.png" /><img class="coin22"
+						src="{$dir}img/coin222.png" /><a class="cks" href="index.php?mod=admin&act=wxinfo"
+						target="main">公众号设置</a><img class="icon5" src="{$dir}img/coin21.png" />
+				</dd>
+				<dd>
+					<img class="coin11" src="{$dir}img/coin111.png" /><img class="coin22"
+						src="{$dir}img/coin222.png" /><a class="cks" href="index.php?mod=admin&act=menu"
+						target="main">菜单设置</a><img class="icon5" src="{$dir}img/coin21.png" />
+				</dd>
+			</dl>
+
+			<dl class="system_log">
+				<dt>
+					<img class="icon1" src="{$dir}img/coin03.png" /><img class="icon2"
+						src="{$dir}img/coin04.png" />活动管理<img class="icon3"
+						src="{$dir}img/coin19.png" /><img class="icon4"
+						src="{$dir}img/coin20.png" />
+				</dt>
+				<dd>
+					<img class="coin11" src="{$dir}img/coin111.png" /><img class="coin22"
+						src="{$dir}img/coin222.png" /><a class="cks" href="index.php?mod=admin&act=activity"
+						target="main">活动设置</a><img class="icon5" src="{$dir}img/coin21.png" />
+				</dd>
+
+			</dl>
+			
+			<dl class="system_log">
+				<dt>
+					<img class="icon1" src="{$dir}img/coin11.png" /><img class="icon2"
+						src="{$dir}img/coin12.png" /> 题库管理<img class="icon3"
+						src="{$dir}img/coin19.png" /><img class="icon4"
+						src="{$dir}img/coin20.png" />
+				</dt>
+			
+				<dd>
+					<img class="coin11" src="{$dir}img/coin111.png" /><img class="coin22"
+						src="{$dir}img/coin222.png" /><a class="cks" href="index.php?mod=admin&act=subject"
+						target="main">题库列表</a><img class="icon5" src="{$dir}img/coin21.png" />
+				</dd>
+				
+				<dd>
+					<img class="coin11" src="{$dir}img/coin111.png" /><img class="coin22"
+						src="{$dir}img/coin222.png" /><a class="cks" href="index.php?mod=admin&act=subimport"
+						target="main">导入题库</a><img class="icon5" src="{$dir}img/coin21.png" />
+				</dd>
+			</dl>
+			
+			<dl class="system_log">
+				<dt>
+					<img class="icon1" src="{$dir}img/coin07.png" /><img class="icon2"
+						src="{$dir}img/coin08.png" /> 会员管理<img class="icon3"
+						src="{$dir}img/coin19.png" /><img class="icon4"
+						src="{$dir}img/coin20.png" />
+				</dt>
+				<dd>
+					<img class="coin11" src="{$dir}img/coin111.png" /><img class="coin22"
+						src="{$dir}img/coin222.png" /><a href="index.php?mod=admin&act=user" target="main"
+						class="cks">会员列表</a><img class="icon5" src="{$dir}img/coin21.png" />
+				</dd>
+				<dd>
+					<img class="coin11" src="{$dir}img/coin111.png" /><img class="coin22"
+						src="{$dir}img/coin222.png" /><a href="index.php?mod=admin&act=black" target="main"
+						class="cks">黑名单</a><img class="icon5" src="{$dir}img/coin21.png" />
+				</dd>
+
+			</dl>
+			
+			<dl class="system_log">
+				<dt>
+					<img class="icon1" src="{$dir}img/coin10.png" /><img class="icon2"
+						src="{$dir}img/coin09.png" /> 权限管理<img class="icon3"
+						src="{$dir}img/coin19.png" /><img class="icon4"
+						src="{$dir}img/coin20.png" />
+				</dt>
+				<dd>
+					<img class="coin11" src="{$dir}img/coin111.png" /><img class="coin22"
+						src="{$dir}img/coin222.png" /><a href="index.php?mod=admin&act=changepwd"
+						target="main" class="cks">修改密码</a><img class="icon5"
+						src="{$dir}img/coin21.png" />
+				</dd>
+				<dd>
+					<img class="coin11" src="{$dir}img/coin111.png" /><img class="coin22"
+						src="{$dir}img/coin222.png" /><a class="cks" href="index.php?mod=admin&act=logout" >退出</a><img
+						class="icon5" src="{$dir}img/coin21.png" />
+				</dd>
+			</dl>
+
+		</div>
+
+	</div>
+</body>
+</html>

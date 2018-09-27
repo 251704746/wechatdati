@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<link rel="stylesheet" type="text/css" href="{$dir}css/css.css" />
+<script type="text/javascript" src="{$dir}js/jquery.min.js"></script>
+<script type="text/javascript">
+function checkvalue()
+{
+	var mid = $("#mid").val();
+	var aid = $("#aid").val();
+	var mname = $("#mname").val();
+	var mpasswd = $("#mpasswd").val();
+
+	if(mname == ""){
+		showform("请输入用户名称");
+		return false;
+	}if(mpasswd == ""){
+		showform("请输入用户密码");
+		return false;
+	}
+
+	$.post("index.php?mod=admin&act=savemanager",{
+		"mname":mname,"mpasswd":mpasswd,"mid":mid,"aid":aid
+	},function(res){
+
+		if(res != 1){
+			showform("用户名称已存在");
+			return false;
+		}else{
+			showform("核销员信息保存成功","index.php?mod=admin&act=manage&mid="+mid+"&aid="+aid);
+		}
+		
+	});
+}
+</script>
+</head>
+<body>
+	<div id="pageAll">
+		<div class="pageTop">
+			<div class="page pos">
+				当前位置：首页&nbsp;-&nbsp;活动管理&nbsp;-&nbsp;添加核销员
+			</div>
+		</div>
+		<div class="page ">
+			<div style="margin:20px 0; color:#999;font-size:16px;">
+				此项为奖品为实物，需要到商家那边领取而方便进行核销而设置的。商家可用微信访问：<font color='red'>{$url}</font> 进入核销系统进行核销
+			</div>
+			<!-- 修改密码页面样式 -->
+			<div class="bbD">
+					<span class="bcname">用户名称：</span><span class="bcvalue"><input type="text" class="input3"
+						 id="mname" value="{$manage['mname']}" /> </span>
+				</div>
+				<div class="bbD">
+					<span class="bcname">用户密码：</span><span class="bcvalue"><input type="password" class="input3"
+						 id="mpasswd"  value="{$manage['mpasswd']}" /> </span>
+				</div>
+				<input type="hidden" id="mid" name="mid" value="{$manage['mid']}">
+				<input type="hidden" id="aid" name="aid" value="{$aid}">
+				<div class="bbD">
+					<p class="bbDP">
+						<button class="btn_ok btn_yes" onclick="checkvalue()">提交</button>
+					</p>
+				</div>
+			
+
+			</div>
+
+			<!-- 修改密码页面样式end -->
+		</div>
+	</div>
+{include file="info.html"}
+</body>
+
+</html>

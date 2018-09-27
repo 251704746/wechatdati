@@ -1,0 +1,25 @@
+{include file="header.html"}
+<script>
+	/*不同分辨率手机加载*/
+	var userScalable = "no";
+	var ins = "";
+	(function () {
+		if (window.devicePixelRatio === 1.5) {
+			userScalable = "yes";
+			ins = "initial-scale=0.5"
+		}
+		var text = "<meta content='" + ins + ", target-densitydpi=device-dpi, width=640,user-scalable=" + userScalable + "' name='viewport'>";
+		document.write(text);
+	})();
+</script>
+
+<div class="w640">  
+	<div class="rule">
+	<div class="rtitle">活动规则</div>
+	{$rule}
+	</div>
+</div>
+
+{include file="nav.html"}
+</body>
+</html>

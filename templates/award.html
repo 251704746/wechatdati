@@ -1,0 +1,412 @@
+{include file="header.html"}
+
+<script>
+	/*不同分辨率手机加载*/
+	var userScalable = "no";
+	var ins = "";
+	(function () {
+		if (window.devicePixelRatio === 1.5) {
+			userScalable = "yes";
+			ins = "initial-scale=0.5"
+		}
+		var text = "<meta content='" + ins + ", target-densitydpi=device-dpi, width=640,user-scalable=" + userScalable + "' name='viewport'>";
+		document.write(text);
+	})();
+	
+var disablebtn = true;
+
+function redpacket()
+{
+	var ppacket = $("#winppacket").val();
+	var did = $("#windid").val();
+	var formhash = "{$formhash}";
+	
+	//window.location.href="index.php?mod=index&act=handout&money=" + ppacket + "&did=" + did + "&formhash="+formhash;
+	
+	$.post("index.php?mod=index&act=uhandout",{
+		"money":ppacket,"did":did,"formhash":formhash
+	},function(res){
+		var info = eval("("+res+")");
+		show_popuptip(info.info);
+	});
+}
+
+function usubmit()
+{
+	if(disablebtn){
+
+		var pid = $("#winPrizeid").val();
+		var ptype = $("#winptype").val();
+		var paward = $("#hpaward").val();
+		var pname = $("#hpname").val();
+		var info = "恭喜您，获得 " + paward + " " + pname + ' ';
+		if(pid > 0 && ptype == 2){
+			var aredpacket = "{$activity['aredpacket']}";
+			
+			if(aredpacket != ''){
+				info += "," + aredpacket;
+			}
+			show_popuptip(info,'<a id="uisubmit" href="javascript:;" onclick="redpacket()"><div class="popuptipbtn">确 认</div></a>');
+		}else if(pid > 0 && ptype == 1){
+			var amaterial = "{$activity['amaterial']}";
+
+			if(amaterial != ''){
+				info += "," + amaterial;	
+			}
+			show_popuptip(info);
+		}
+		disablebtn = false;
+	}else{
+		return false;
+	}
+}
+
+
+function close_popup()
+{
+	$(".fullscreens").hide();
+	$(".popup").hide();
+}
+
+function save_userinfo()
+{
+	var name = $("#name").val();
+	var telphone = $("#telphone").val();
+	
+	if(name == "" || telphone == ""){
+		show_popuptip("请填写您的姓名和手机号码等信息，此信息用于兑奖，请认真填写！");
+		return false;
+	}
+	/*var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
+	
+	if(!myreg.test(telphone)){
+		show_popuptip("您输入的手机号码有误，此信息用于兑奖，请认真填写！");
+		return false;
+	}*/
+	
+	if(telphone.length < 11){
+		show_popuptip("您输入的手机号码有误，此信息用于兑奖，请认真填写！");
+		return false;
+	}
+	
+	$.post("index.php?mod=index&act=save_userinfo",{
+		"name":name,"telphone":telphone
+	},function(res){
+		close_popup();
+		usubmit();
+	});
+}
+
+	
+</script>
+
+
+<div class="w640"> 
+<div id="header">
+<a href="javascript:history.go(-1);" class="back"></a><h1 class="title">抽奖</h1>
+</div>
+
+<div class="play">
+	<span></span><div class="div">
+	<div id="demo" class="qimo8">
+		<div class="qimo">
+			<div id="demo1">
+				<ul>
+					{if !$draw}<li>还未有中奖记录哦！</li>{else}
+					{foreach from=$draw item="list"}
+					<li>恭喜 <font color="red">{$list['username']} </font> 获得 {$list['daward']} {$list['dname']}</li>
+					{/foreach}{/if}
+				</ul>
+			</div>
+			<div id="demo2"></div>
+		</div>
+	</div>
+</div>
+</div>
+
+<!-- 代码 开始 -->
+<div class="shanDeng" id="deng">
+	<div id="luck"><!-- luck -->
+		<table style="border-spacing:.08rem .03rem;">
+			<tr>
+				<td class="luck-unit luck-unit-0"><img src="upload/prizes/{$prizes[0]['pthumb']}"></td>
+				<td class="luck-unit luck-unit-1"><img src="upload/prizes/{$prizes[1]['pthumb']}"></td>
+				<td class="luck-unit luck-unit-2"><img src="upload/prizes/{$prizes[2]['pthumb']}"></td>
+			</tr>
+			<tr>
+				<td class="luck-unit luck-unit-7"><img src="templates/images/05.png"></td>
+				<td class="cjBtn" id="btn"></td>
+				<td class="luck-unit luck-unit-3"><img src="templates/images/05.png"></td>
+			</tr>
+			<tr>
+				<td class="luck-unit luck-unit-6"><img src="upload/prizes/{$prizes[5]['pthumb']}"></td>
+				<td class="luck-unit luck-unit-5"><img src="upload/prizes/{$prizes[4]['pthumb']}"></td>
+				<td class="luck-unit luck-unit-4"><img src="upload/prizes/{$prizes[3]['pthumb']}"></td>
+			</tr>
+		</table>
+	</div><!-- luckEnd -->
+</div>
+
+<input type="hidden" id="winPrizeid" value="">
+<input type="hidden" id="winptype" value="">
+<input type="hidden" id="winppacket" value="">
+<input type="hidden" id="windid" value="">
+<input type="hidden" id="hpaward" value=""/>
+<input type="hidden" id="hpname" value=""/>
+
+<div class="jpshuoming">
+
+<div class="smtitle">奖品说明</div>
+{foreach from=$prize item="list"}
+<div class="smrow"><span class="smname">{$list['paward']}</span>
+<span class="smprize">{$list['pname']}</span>
+<span class="smnum">{$list['pnum']} 份</span>
+</div>
+<div class="clear"></div>
+{/foreach}
+</div>
+
+{foreach from=$prizes item="lists" name="foos"}
+<input type="hidden" id="ppro{$smarty.foreach.foos.iteration}" value="{$lists['pprobability']}">
+<input type="hidden" id="pid{$smarty.foreach.foos.index}" value="{$lists['pid']}">
+<input type="hidden" id="psid{$smarty.foreach.foos.index}" value="{$lists['psid']}">
+<input type="hidden" id="paward{$smarty.foreach.foos.index}" value="{$lists['paward']}">
+<input type="hidden" id="pname{$smarty.foreach.foos.index}" value="{$lists['pname']}">
+<input type="hidden" id="ptype{$smarty.foreach.foos.index}" value="{$lists['ptype']}">
+<input type="hidden" id="ppacket{$smarty.foreach.foos.index}" value="{$lists['ppacket']}">
+{/foreach}
+
+{include file="footer.html"}
+
+<div class="fullscreens"></div>
+<div class="popup">
+<div class="popuprow poptips"></div>
+<div class="popuprow"><label>您的姓名：</label><input type="text" id="name"/></div>
+<div class="popuprow"><label>联系电话：</label><input type="text" id="telphone" maxlength="11"/></div>
+<div class="popuprow"><a href="javascript:;" onclick="save_userinfo()"><span class="popupbtn psubmit">确 认</span></a>
+<a href="javascript:;" onclick="close_popup()"><span class="popupbtn">取 消</span></a></div>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script>
+	var luck={
+		index:0,	//当前转动到哪个位置，起点位置
+		count:0,	//总共有多少个位置
+		timer:0,	//setTimeout的ID，用clearTimeout清除
+		speed:20,	//初始转动速度
+		times:0,	//转动次数
+		cycle:50,	//转动基本次数：即至少需要转动多少次再进入抽奖环节
+		prize:-1,	//中奖位置
+		init:function(id){
+			if ($("#"+id).find(".luck-unit").length>0) {
+				$luck = $("#"+id);
+				$units = $luck.find(".luck-unit");
+				this.obj = $luck;
+				this.count = $units.length;
+				$luck.find(".luck-unit-"+this.index).addClass("active");
+			};
+		},
+
+		
+		roll:function(){
+		
+			var index = this.index;
+			var count = this.count;
+			var luck = this.obj;
+			$(luck).find(".luck-unit-"+index).removeClass("active");
+			index += 1;
+			if (index>count-1) {
+				index = 0;
+			};
+			
+			$(luck).find(".luck-unit-"+index).addClass("active");
+			this.index=index;
+			return false;
+		},
+		stop:function(index){
+			this.prize=index;
+
+			return false;
+		}
+	};
+
+	var uwin = false;
+	
+	function roll(){
+		luck.times += 1;
+		luck.roll();
+		if (luck.times > luck.cycle+10 && luck.prize==luck.index) {
+			clearTimeout(luck.timer);
+			$("#award").html(luck.prize);
+			
+			var vi = 100;
+			
+			switch(luck.prize){
+				case 0 : vi = 0; break;
+				case 1 : vi = 1; break;
+				case 2 : vi = 2; break;
+				case 4 : vi = 3; break;
+				case 5 : vi = 4; break;
+				case 6 : vi = 5; break;
+				default: vi = 100;break;
+			}
+			
+			var pid = ($("#pid"+vi).val())?$("#pid"+vi).val():0;
+			var psid = ($("#psid"+vi).val())?$("#psid"+vi).val():0;
+			var ptype = ($("#ptype"+vi).val())?$("#ptype"+vi).val():0;
+			var paward = ($("#paward"+vi).val())?$("#paward"+vi).val():"";
+			var pname = ($("#pname"+vi).val())?$("#pname"+vi).val():"";
+			var ppacket = ($("#ppacket"+vi).val())?$("#ppacket"+vi).val():"";
+
+			$("#winPrizeid").val(pid);
+			$("#winptype").val(ptype);
+			$("#winppacket").val(ppacket);
+			$("#hpaward").val(paward);
+			$("#hpname").val(pname);
+			var formhash = '{$formhash}';
+			$.post("index.php?mod=index&act=action_draw",{
+				'pid':pid,'psid':psid,formhash:formhash
+			},function(res){
+				var r = eval("(" + res + ")");
+				if(r.did < 0){
+					show_popuptip(r.info);
+				}else{
+					$("#windid").val(r.did);
+					setTimeout(function(){	
+						if(pid > 0 && res != 0){
+							var name = "{$users['name']}";
+							var telphone = "{$users['telphone']}";
+							
+							if(name == ""){
+								$(".poptips").html("恭喜您，中了 "+paward+" 获得 "+pname+",请先填写以下兑奖信息！");
+								$(".fullscreens").show();
+								$(".popup").show();
+							}else{
+								usubmit();
+							}
+						}else{
+							show_popuptip("很遗憾，本次抽奖您没有抽中任何奖品!");
+						}
+						click=false;
+					},1000);
+					
+					luck.prize=-1;
+					luck.times=0;
+				}
+			});
+		}else{
+			if (luck.times<luck.cycle) {
+				luck.speed -= 10;
+			}else if(luck.times==luck.cycle) {
+				var index = Math.random();
+				
+				var ppro1 = parseFloat( $("#ppro1").val() );
+				var ppro2 = parseFloat( ppro1 + parseFloat( $("#ppro2").val() ) );
+				var ppro3 = parseFloat( ppro2 + parseFloat( $("#ppro3").val() ) );
+				var ppro4 = parseFloat( ppro3 + parseFloat( $("#ppro4").val() ) );
+				var ppro5 = parseFloat( ppro4 + parseFloat( $("#ppro5").val() ) );
+				var ppro6 = parseFloat( ppro5 + parseFloat( $("#ppro6").val() ) );
+
+				if(index < ppro1){
+					index = 0;
+				}else if (index < ppro2){
+					index = 1;
+				}else if (index < ppro3){
+					index = 2;
+				}else if (index < ppro4){
+					index = 4;
+				}else if (index < ppro5){
+					index = 5;
+				}else if (index < ppro6){
+					index = 6;
+				}else{
+					var mr = Math.random()*10;
+					
+					if(mr < 5 ){
+						index = 3;
+					}else{
+						index = 7;
+					}
+				}
+
+				if(uwin){
+					index = 7;
+				}
+				
+				luck.prize = index;//最终中奖位置
+			}else{
+				if (luck.times > luck.cycle+10 && ((luck.prize==0 && luck.index==7) || luck.prize==luck.index+1)) {
+					luck.speed += 110;
+				}else{
+					luck.speed += 20;
+				}
+			}
+			if (luck.speed<40) {
+				luck.speed=40;
+			};
+
+			luck.timer = setTimeout(roll,luck.speed);
+		}
+		return false;
+	}
+
+
+	var click=false;
+	window.onload=function(){
+		luck.init('luck');
+		$("#btn").click(function(){
+			/*//按下弹起效果
+			$("#btn").addClass("cjBtnDom");
+			setTimeout(function(){	
+				$("#btn").removeClass("cjBtnDom");
+			},200);*/
+
+			$.post("index.php?mod=index&act=determine",{
+			},function(res){
+
+				var info = eval("(" + res + ")");
+
+				if(info.code < 100){
+					
+					if(info.code == 11){
+						show_popuptip(info.info,'<a href="subject"><div class="popuptipbtn">确 认</div></a>');
+					}else{
+						show_popuptip(info.info);
+					}
+					return false;
+				}else if(info.code == 100){
+					
+					uwin = true;
+				}
+				if(click) {
+					return false;
+				}
+				else{
+					luck.speed=100;
+					roll();
+					click=true;
+					return false;
+				}
+			});
+		});
+	};
+	//播报
+	var demo = document.getElementById("demo");
+	var demo1 = document.getElementById("demo1");
+	var demo2 = document.getElementById("demo2");
+	demo2.innerHTML=document.getElementById("demo1").innerHTML;
+	function Marquee(){
+		if(demo.scrollLeft-demo2.offsetWidth>=0){
+			demo.scrollLeft-=demo1.offsetWidth;
+		}
+		else{
+			demo.scrollLeft++;
+		}
+	}
+	setInterval(Marquee,10);
+	
+</script>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<meta http-equiv="Pragma" content="no-cache"> 
+<meta http-equiv="Cache-Control" content="no-cache"> 
+<meta http-equiv="Expires" content="0"> 
+<title>后台管理</title>
+<script type="text/javascript" src="{$dir}js/jquery.min.js"></script>
+<link href="{$dir}css/login.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+function checkvalue()
+{
+	var username = $("#username").val();
+	var password = $("#password").val();
+	if(username == ""){
+		showform("请输入您的用户名");
+		return false;
+	}if(password == ""){
+		showform("请输入您的登录密码");
+		return false;
+	}
+	
+	$.post("index.php?act=action_login&mod=admin",{
+	"username":username,"password":password
+	},function(res){
+	
+		if(res == 1){
+			window.location.href="index.php?act=index&mod=admin&username="+username;
+		}else if(res == 2){
+			showform("您的用户名输入有误");
+			return false;
+		}else{
+			showform("您的登录密码输入有误");
+			return false;
+		}
+	});
+}
+</script>
+
+</head>
+
+<body>
+<div class="login_box">
+      <div class="login_l_img"><img src="{$dir}img/login-img.png" /></div>
+      <div class="login">
+          <div class="login_logo"><a href="#"><img src="{$dir}img/login_logo.png" /></a></div>
+          <div class="login_name">
+               <p>后台管理系统</p>
+          </div>
+ 
+              <input id="username" name="username" type="text"  placeholder="用户名" onfocus="this.style='border:1px solid #27A9E3'" onblur="this.style='border:1px solid #DCDEE0'">
+			  <input id="password" name="password" type="password" placeholder="密码" onfocus="this.style='border:1px solid #27A9E3'" onblur="this.style='border:1px solid #DCDEE0'"/>
+              <input value="登录" type="button" onclick="checkvalue()">
+		</div>
+      <div class="copyright">某某有限公司 版权所有©2016-2018 技术支持电话：000-00000000</div>
+</div>
+
+{include file="info.html"}
+
+</body>
+</html>

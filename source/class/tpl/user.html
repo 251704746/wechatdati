@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>会员管理</title>
+
+<link rel="stylesheet" type="text/css" href="{$dir}css/page.css"/>
+<link rel="stylesheet" type="text/css" href="{$dir}css/css.css" />
+
+<script type="text/javascript" src="{$dir}js/jquery.min.js"></script>
+<script type="text/javascript">
+function chaxun()
+{
+	var susername = $("#susername").val();
+	window.location.href = "index.php?mod=admin&act=user&susername="+susername;
+}
+</script>
+</head>
+
+<body>
+	<div id="pageAll">
+		<div class="pageTop">
+			<div class="page pos">
+				当前位置：首页&nbsp;-&nbsp;会员管理&nbsp;-&nbsp;会员列表
+			</div>
+		</div>
+
+		<div class="page">
+			<!-- user页面样式 -->
+			<div class="connoisseur">
+				<!-- user 表格 显示 -->
+				<div class="conShow">
+					
+				<div class="tableheader">
+				<span class="lheader"><label>会员名称：</label><input type="text" id="susername" class="input3" value="{$susername}">
+				<a href="javascript:;" onclick="chaxun()"><div class="btn">查询</div></a></span>
+
+				</div>
+				
+					<table border="1" cellspacing="0" cellpadding="0">
+						<tr>
+							<td width="5%" class="tdColor tdC">会员ID</td>
+							<td width="25%" class="tdColor">会员名称</td>
+							<td width="25%" class="tdColor">会员Openid</td>
+							<td width="25%" class="tdColor">注册时间</td>
+						</tr>
+						
+						{foreach from=$users item="infos"}
+						<tr height="40px">
+							<td>{$infos['uid']}</td>
+							<td>{$infos['username']}</td>
+							<td>{$infos['uopenid']}</td>
+							<td>{$infos['uaddtime']}</td>
+						</tr>
+						{/foreach}
+					</table>
+					
+				</div>
+				<!-- user 表格 显示 end-->
+			</div>
+			<!-- user页面样式end -->
+			
+			<div class="page_area">
+
+			<span class="pageinfo">共 <font color="#68abc6">{$filter["total"]}</font> 条记录，分 <font color="#68abc6">{$filter["tpage"]}</font> 
+
+			页，当前第 <font color="#68abc6">{$filter["cpage"]}</font> 页</span>
+			<span class="pagebtn">
+			
+			<a href="index.php?mod=admin&act=user&cpage=1">首页</a> 
+			<a href="index.php?mod=admin&act=user&cpage={$filter['fpage']}">上一页</a> 
+			<a href="index.php?mod=admin&act=user&cpage={$filter['npage']}">下一页</a>
+			<a href="index.php?mod=admin&act=user&cpage={$filter['lpage']}">末页</a>
+			 
+			 </span></div>
+
+		</div>
+		
+		
+
+	</div>
+
+
+</body>
+
+</html>

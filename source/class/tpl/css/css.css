@@ -1,0 +1,912 @@
+﻿@charset "utf-8";
+
+.utitle{font-weight:bold;margin-bottom:10px;}
+* {
+	padding: 0;
+	margin: 0;
+	font-family: "Microsoft YaHei";
+	font-size: 14px;
+}
+#hides{display: none;}
+a {
+	text-decoration: none;
+}
+
+li {
+	list-style-type: none;
+}
+
+/*全局定义css*/
+#pageAll {
+	width: 100%;
+	overflow: hidden;
+}
+
+#pageAll .page {
+	width: 96%;
+	margin: 0px auto;
+}
+
+#pageAll .pos{
+	color:#333;
+}
+
+
+.pageTop {
+	width: 100%;
+	height: 45px;
+	line-height: 45px;
+	background-color: #f2f2f2;
+	border-bottom: 1px solid #d9d9d9;
+	box-sizing:border-box;
+}
+
+.pageTop span {
+	margin-left: 15px;
+}
+
+.pageTop a {
+	color: #3695cc;
+}
+
+/*表格和 分页公共CSS*/
+table {
+	border-collapse: collapse;
+}
+
+tr {
+	
+}
+
+td {
+	text-align: center;
+	padding:5px 10px;
+	border: 1px solid #dcdbdb;
+}
+
+.tdColor {
+	height: 35px;
+	background-color: #f2f2f2;
+	color: #438eb9;
+}
+
+.tdC {
+	color: #333;
+}
+
+.paging {
+	width: 100%;
+	margin-top: 50px;
+	margin-bottom: 90px;
+	text-align: right;
+}
+/*表格和 分页公共CSS end*/
+
+/*广告页面CSS*/
+.banner {
+	
+}
+
+.banner .add {
+	width: 100%;
+	height: 120px;
+}
+
+.addA {
+	display: inline-block;
+	width: 160px;
+	height: 35px;
+	background-color: #47a4e1;
+	line-height: 35px;
+	text-align: center;
+	color: #fff;
+	margin-top: 40px;
+	margin-left: 40px;
+	font-size: 16px;
+}
+.hbHides1{display: none;}
+.banner .banShow {
+	
+}
+
+.banner .banShow .bsImg {
+	margin-top: 15px;
+	margin-bottom: 15px;
+	width: 185px;
+	height: 90px;
+	overflow: hidden;
+	margin-left: 66px;
+}
+
+.banner .banShow .bsImg img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.banner .banShow .bsA {
+	color: #333;
+}
+
+.operation {
+	margin-left: 5px;
+	margin-right: 5px;
+	cursor: pointer;
+}
+
+.banDel {
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.29);
+	position: fixed;
+	top: 0px;
+	display: none;
+}
+
+.cutMoney {
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.29);
+	position: fixed;
+	top: 0px;
+	display: none;
+}
+
+.delete {
+	width: 460px;
+	margin: auto;
+	background-color: #fff;
+	text-align: center;
+	position: relative;
+	top: 20%;
+}
+
+.delete .close {
+	height: 30px;
+	text-align: right;
+}
+
+.delete .close img {
+	margin-right: 5px;
+	margin-top: 5px;
+	cursor: pointer;
+}
+
+.banDel .delete .delP1 {
+	margin-top: 40px;
+	font-size: 20px;
+}
+
+.banDel .delete .delP2 {
+	
+}
+
+.banDel .delete .delP2 .ok {
+	display: inline-block;
+	width: 100px;
+	height: 40px;
+	line-height: 40px;
+	background-color: #3695cc;
+	color: #fff;
+	margin-top: 65px;
+	margin-left: 25px;
+	margin-right: 25px;
+	font-size: 16px;
+	cursor: pointer;
+	margin-bottom: 65px;
+}
+
+.banDel .delete .delP2 .yes {
+	color: #333;
+	background-color: #fff;
+	border: 1px solid #3695cc;
+}
+
+.banDel .delete .delP2 .no {
+	
+}
+/*广告页面CSS end*/
+
+/*广告上传编辑页面CSS*/
+.bor {
+	border: 1px solid #ccc;
+}
+
+.banneradd {
+	margin-bottom: 160px;
+	margin-top: 10px;
+}
+
+.baTopNo {
+	width: 100%;
+	border: none;
+}
+
+.baTopNo span {
+	height: 50px;
+	line-height: 50px;
+	margin-left: 40px;
+	font-size: 18px;
+	color: #438eb9;
+}
+
+.baTop {
+	width: 100%;
+	border-bottom: 1px solid #ccc;
+}
+
+.baTop span {
+	height: 50px;
+	line-height: 50px;
+	margin-left: 40px;
+	font-size: 18px;
+	color: #438eb9;
+}
+
+.baBody {
+	margin-top: 20px;
+	margin-left: 90px;
+}
+
+.bbD {
+	margin-top: 20px;
+}
+
+.bbD .bbDP {
+	padding-top:10px;
+}
+
+.bbD .bbDP .btn_ok {
+	display: inline-block;
+	width: 100px;
+	height: 40px;
+	line-height: 40px;
+	background-color: #3695cc;
+	color: #fff;
+	margin-right: 25px;
+	font-size: 16px;
+	cursor: pointer;
+	text-align: center;
+	margin-bottom: 30px;
+	border: none;
+}
+
+.btn_ok {
+	display: inline-block;
+	width: 100px;
+	height: 40px;
+	line-height: 40px;
+	background-color: #3695cc;
+	color: #fff;
+	margin-right: 25px;
+	font-size: 16px;
+	cursor: pointer;
+	text-align: center;
+	margin-bottom: 30px;
+	border: none;
+}
+
+.bbD .bbDP .btn_no {
+	color: #333;
+	background-color: #fff;
+	border: 1px solid #3695cc;
+}
+
+.bbD .bbDP .btn_yes {
+	margin-left: 16px;
+}
+.btn_yes {
+	margin-left: 16px;
+}
+
+
+.bbD .bbDd {
+	width: 280px;
+	height: 210px;
+}
+.bbD .selCss{  
+	width: 300px;
+    height: 40px;
+    border: 1px solid #ccc;
+    text-indent: 15px;
+}
+
+.bbD .input1 {
+	width: 300px;
+	height: 40px;
+	border: 1px solid #ccc;
+	text-indent: 15px;
+}
+
+.bbD .input2 {
+	width: 100px;
+	height: 40px;
+	border: 1px solid #ccc;
+}
+
+.bbD .input3 {
+	width: 360px;
+	height: 35px;
+	border: 1px solid #ccc;
+	text-indent: 10px;
+}
+
+.bbD .input4 {
+	width: 90px;
+	height: 35px;
+	padding:0px;
+	border: 1px solid #ccc;
+	text-indent: 10px;
+}
+
+
+.bbD .input5 {
+	width: 190px;
+	height: 35px;
+	padding:0px;
+	border: 1px solid #ccc;
+	text-indent: 10px;
+}
+
+.bbD .textarea{width:39%;height:200px;resize: none;padding:10px;box-sizing:border-box;}
+
+.editarea{width:800px;}
+
+.bbD .UPimgD{width: 155px;height: 175px;position: relative;left: 83px;top: -20px;}
+.bbD .UPimgD img.img{width: 100%;}
+.bbD .UPimgD .FileD{width: 155px;height: 175px;overflow: hidden;position: absolute;top: 0px;}
+.bbD .UPimgD .FileD .addFile{width: 100%;height: 100%;opacity: 0;filter: Alpha(Opacity=0);}
+.bbD .bbDImg {
+	width: 160px;
+	height: 180px;
+	background-color: #c6c6c6;
+	text-align: center;
+	line-height: 180px;
+	font-size: 55px;
+	color: #fff;
+	margin-left: 72px;
+	margin-top: -16px;
+}
+
+.bbD .bbDImg .Img1 {
+	width: 160px;
+	height: 180px;
+	margin-top: -180px;
+}
+
+.bbD .file {
+	width: 160px;
+	height: 180px;
+	position: relative;
+	top: -180px;
+	left: 45px;
+	opacity: 0;
+	filter: alpha(opacity = 0);
+}
+
+.bbD .bbDDel {
+	float: right;
+	margin-top: -20px;
+	color: #ff0000;
+}
+
+
+/*广告上传编辑页面CSS*/
+
+/*意见管理页面CSS*/
+.opinion {
+	
+}
+
+.opinion .opShow {
+	margin-top: 40px;
+	margin-bottom: 95px;
+}
+/*意见管理页面CSS end*/
+
+/*行家管理页面CSS*/
+.connoisseur {
+	
+}
+
+.conShow {
+	margin-top: 0px;
+}
+
+.conShow table{width:100%}
+
+.onsImg {
+	width: 75px;
+	height: 75px;
+	margin-top: 25px;
+	margin-left: 46px;
+	overflow: hidden;
+	margin-bottom: 25px;
+}
+
+.onsImg img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.cfD {
+	margin-top: 15px;
+}
+
+.cfD select {
+	width: 200px;
+	height: 30px;
+	border: 1px solid #ccc;
+	margin-left: 15px;
+	margin-right: 45px;
+	color: #999;
+	text-indent: 15px;
+}
+
+.cfD .bselect {
+	width: 140px;
+}
+
+.cfD label {
+	margin-left: 20px;
+}
+
+.cfD .lar {
+	margin-right: 45px;
+}
+
+.cfD .addUser {
+	width: 220px;
+	height: 30px;
+	border: 1px solid #ccc;
+	text-indent: 15px;
+}
+
+.cfD .button {
+	margin-left: 10px;
+	width: 135px;
+	height: 30px;
+	border: none;
+	font-size: 16px;
+	color: #fff;
+	background-color: #47a4e1;
+}
+
+.cfD .addA1 {
+	margin-top: 10px;
+	margin-left: 120px;
+}
+/*行家管理页面CSS end*/
+
+/*会员管理页面CSS*/
+.vip {
+	
+}
+
+.cfD .vpr {
+	margin-right: 45px;
+}
+
+.cfD .vinput {
+	width: 150px;
+	height: 30px;
+	border: 1px solid #ccc;
+	text-indent: 15px;
+}
+
+.cfD .addA2 {
+	margin-left: 30px;
+}
+
+.onsImgv {
+	margin-left: 90px;
+	margin-top: 25px;
+}
+
+.vip .vipinput {
+	width: 55px;
+	height: 25px;
+	border: 1px solid #ccc;
+	margin: 0px 10px;
+}
+
+.vip .vsAdd {
+	display: inline-block;
+	width: 50px;
+	height: 25px;
+	background-color: #2a9cdd;
+	line-height: 25px;
+	color: #fff;
+	cursor: pointer;
+	text-align: center;
+}
+
+.vip .vsAdd2 {
+	background-color: white;
+	color: #2a9cdd;
+	border: 1px solid #2a9cdd;
+	height: 23px;
+	line-height: 23px;
+	margin-left: 10px;
+}
+
+.bbD{clear:both}
+.bbD .vipHead {
+	width: 75px;
+	height: 75px;
+	overflow: hidden;
+	margin-top: -15px;
+	margin-left: 82px;
+}
+
+.bbD .vipHead img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.bbD .vipHead .vipP {
+	position: relative;
+	top: -17px;
+	width: 100%;
+	height: 15px;
+	background-color: rgba(0, 0, 0, 0.25);
+	color: #fff;
+	text-align: center;
+}
+
+.bbD .vipHead .file1 {
+	position: relative;
+	top: -32px;
+	width: 100%;
+	height: 15px;
+	background-color: rgba(0, 0, 0, 0.25);
+	color: #fff;
+	text-align: center;
+	opacity: 0;
+	filter: alpha(opacity = 0);
+}
+
+.bbD .vipHead1 {
+	width: 75px;
+	height: 75px;
+	overflow: hidden;
+	margin-top: -15px;
+	margin-left: 105px;
+}
+.bbD .ptH{height: 40px;}
+
+.bbD .btext2 {
+	margin-top: -15px;
+	margin-left: 105px;
+}
+
+.bbD .text2 {
+	max-width: 670px;
+	min-width: 670px;
+	max-height: 120px;
+	min-height: 120px;
+	color: #333;
+	text-indent: 15px;
+}
+
+.bbD .btext {
+	margin-top: -15px;
+	margin-left: 82px;
+}
+.bbD .text5{width: 540px;height: 110px;}
+
+.bbD .bsp2{
+    position: relative;
+    top: -90px;
+}
+.bbD .bewm{
+	width: 240px;
+    height: 240px;
+    border: 3px solid #807e7e;
+    position: relative;
+    top: -10px;
+    left: 85px;
+}
+
+.bbD .bewm img{
+	max-width: 100%;
+}
+
+.bbD .btext .text1 {
+	max-width: 670px;
+	min-width: 670px;
+	max-height: 240px;
+	min-height: 240px;
+	color: #333;
+	text-indent: 15px;
+}
+
+/*会员管理页面CSS end*/
+.cfD .timeInput {
+	width: 170px;
+	height: 30px;
+	border: 1px solid #ccc;
+	text-indent: 15px;
+}
+
+/*话题管理页面CSS*/
+.topic {
+	
+}
+
+.topicP {
+	margin-top: -5px;
+	margin-bottom: 15px;
+}
+
+.topic .topicP .topicImg {
+	margin-left: 10px;
+}
+/*话题管理页面CSS end*/
+
+/*心愿管理页面 、约见管理页面CSS*/
+.wishShow {
+	margin-top: 30px;
+}
+
+.wishShow .wishImgv {
+	margin-left: 60px;
+}
+
+.onsInmA {
+	margin-left: 100px;
+}
+
+.tpapA {
+	color: #333;
+}
+
+#inputSTWish {
+	width: 100px;
+}
+/*心愿管理页面CSS、、约见管理页面CSS end*/
+.cfD .userinput {
+	width: 220px;
+	height: 40px;
+	border: 1px solid #ccc;
+	text-indent: 15px;
+	color: #999;
+}
+
+.cfD .userbtn {
+	margin-left: 60px;
+	width: 135px;
+	height: 40px;
+	border: none;
+	font-size: 16px;
+	color: #fff;
+	background-color: #47a4e1;
+}
+
+/*修改密码*/
+.bacen {
+	width: 90%;
+	margin-top: 20px;
+}
+
+.uclear{clear:both;}
+.bcnames{float:left;width:100px;height:50px;text-align:right;line-height:50px;}
+.bcvalue{float:left;width:68%;height:50px;text-indent:10px;line-height:50px;}
+.bcname{float:left;height:50px;line-height:50px}
+.bcvalues{float:left;width:90%;margin-bottom:10px;margin-left:10px;line-height:50px;}
+
+.imga {
+	display: none;
+}
+
+.imgb {
+	display: none;
+}
+
+/*新增加弹出框样式    增加金额和减少金额   hy*/
+/*.addMoney{}
+.addMoney .addDivs{}
+.addMoney .addDivs .addDimg{}
+.addMoney .addDivs .addDimg{}*/
+.addDivs .addDimg img.user {
+	width: 100px;
+	margin-top: 50px;
+}
+
+.addDivs .addDName {
+	font-size: 16px;
+	margin-top: 15px;
+	color: #333;
+}
+
+.addDivs .addDps {
+	margin-top: 20px;
+	color: #666;
+}
+
+.addDivs .addDps input {
+	height: 30px;
+	border: 1px solid #ccc;
+	text-indent: 10px;
+}
+
+.addDivs .addDps .come1 {
+	width: 155px;
+	height: 30px;
+	margin-left: -5px;
+	border: 1px solid #ccc;
+	text-indent: 10px;
+	color: #666;
+}
+
+.addDivs .addDps .come2 {
+	width: 155px;
+	height: 30px;
+	margin-left: -5px;
+	border: 1px solid #ccc;
+	text-indent: 10px;
+	color: #666;
+}
+
+.addDivs .addDps .area {
+	border: 1px solid #ccc;
+	text-indent: 10px;
+	margin-left: 4px;
+	width: 155px;
+	min-width: 155px;
+	max-width: 155px;
+	height: 60px;
+	min-height: 60px;
+	max-height: 60px;
+}
+
+.addDivs .addDps .spanVIPs {
+	position: relative;
+	top: -44px;
+	left: 5px;
+}
+
+.banDel .delete .delP2 .moneyAdd1 {
+	background-color: #3695cc;
+	color: white;
+}
+
+.banDel .delete .delP2 .moneyAdd2 {
+	background-color: white;
+	color: #3695cc;
+	border: 1px solid #3695cc;
+	height: 38px;
+	line-height: 40px;
+}
+
+/*新样式修复***添加话题*/
+.addHTs {
+	display: inline-block;
+	width: 40px;
+	height: 18px;
+	line-height: 18px;
+	background-color: #47a4e1;
+	color: white;
+	padding: 4px;
+	position: relative;
+	top: -5px;
+}
+
+
+/*11.25   新地址选择页面CSS   公共样式   hy*/
+.ctAlert{display: none;width: 100%;height: 100%;position: fixed;top: 0px;background-color: rgba(0, 0, 0, 0.4);}
+.citys{width: 90%;margin: 0px auto;background-color: white;  margin-top: 50px;padding-bottom: 20px;}
+.citys .getCtys{min-height: 50px;padding-top: 50px;padding-left: 40px;float: left;font-size: 16px;  color: #666;  width: 80%;}
+.citys .closeCys{min-height: 50px;float: right;width: 120px;height: 40px;background-color: #3695cc;line-height: 50px;text-align: center;position:relative;top: 50px;right: 100px;color: white;font-size: 16px;cursor: pointer;}
+.citys .cityDiv{clear: both;width: 90%;margin: 0px auto;  margin-bottom: 30px;}
+.citys .cityDiv .cts{display: inline-block;width: 20px;height: 20px;font-size: 18px;color: #3695cc;}
+.citys .cityDiv .ctn{display: inline-block;font-size: 16px;padding-left: 5px;padding-right: 5px;padding-bottom: 3px;cursor: pointer;color: #666;}
+.citys .cityDiv .ctn:hover{color: white;background-color:#3695cc;}
+/*添加进来的DIV*/
+.citys .getCtys .ctn{display: inline-block;padding-left: 5px;padding-right: 5px;color: #3695cc;font-size: 16px;cursor: pointer;}
+
+.clear{clear:both}
+
+.page_area{height:39px;border:1px solid #ddd;margin-top:10px;background:#f2f2f2;color:#999;margin-bottom:30px;}
+.pageinfo{margin:0 10px;float:left;line-height:39px;}
+.pagebtn{margin:0 10px;float:right;line-height:39px;color:#666}
+.pagebtn a{color:#666;padding:5px 10px;background:#dddddd;border-radius:5px;}
+.pagebtn a:hover{background:#0099FF;}
+
+.tableheader{height: 39px;border: 1px solid #ddd;margin: 10px 0;background: #f2f2f2;color: #999;}
+.tableheader .lheader{float:left;height:39px;padding-left:10px;}
+.tableheader .lheader .input3{width: 220px;height: 28px;border: 1px solid #ccc;text-indent: 10px;margin:5px;float:left}
+.tableheader .lheader label{margin:5px;float:left;line-height:28px;}
+.tableheader .lheader select{width: 220px;height: 28px;border: 1px solid #ccc;text-indent: 10px;margin:5px;float:left}
+.tableheader .lheader .btn{float:left;padding:3px 12px;margin:5px;border:1px solid #ccc;color:#999;cursor:pointer}
+.tableheader .rheader{float:right;height:39px;padding-right:10px;}
+.tableheader .rheader .ubtn{padding:3px 12px;margin:5px;border:1px solid #ccc;color:#999}
+
+.tabClick{border-bottom:1px solid #ddd;margin-top:10px;overflow: hidden;}
+.tabClick li{ height:40px; line-height: 40px; width: 33.33%; float: left; text-align: center}
+.tabClick li.active{ color: #438eb9; transition: 0.1s; font-weight: bold;border-bottom:1px solid #438eb9}
+.tabCon{ overflow: hidden}
+.tabBox{ position: relative;}
+.tabList{word-break: break-all; width:100%;float:left; line-height:100px;  font-size:36px; font-family: "Arial Black"}
+.lineBorder{ height: 2px; overflow: hidden; border-bottom:1px solid #438eb9; background: #f3f3f3}
+.lineDiv{ background: #438eb9; height: 2px; width: 25%;}
+
+.dbtable{width:100%;margin-top:10px;margin-bottom:20px;}
+.dbtitle{line-height:39px;font-size:15px;}
+
+table a{color:#333;text-decoration:underline;}
+
+.menuarea{}
+.menuarea a{text-decoration:underline;color:#333}
+.menuarea span{margin-left:10px;}
+.menuarea .mainmenu{margin-top:10px;}
+.menuarea .childmenu{margin-top:10px;}
+.menuarea .childmenu .menuicon{float:left}
+.menuarea .mtinput{width:120px;height:15px;padding:10px;border:1px solid #ccc}
+.menuarea .muinput{width:300px;height:15px;padding:10px;border:1px solid #ccc}
+.menutitle{margin-top:20px;height:39px;border-bottom:1px solid #eee;line-height:39px;}
+.menutitle .mttlt{float:left;width:120px;line-height:39px;text-align:center;}
+.menutitle .mutlt{float:left;width:300px;line-height:39px;text-align:center;}
+
+.blackarea{width:580px;height:350px;padding:10px;background:#ddd;border:10px solid #eee;overflow-y:scroll}
+.blackarea a{color:#888;}
+.blackarea a:hover{color:#fff;}
+.blackarea .blackitem{width:100px;height:30px;line-height:30px;background:#eee;border-radius:5px;text-align:center;float:left;margin-left:10px;margin-top:10px}
+.blackarea .blackitem:hover{background:#999;color:#fff}
+
+.fullscreen{display:none;position:fixed;top:0;left:0;z-index:1000;background:#888;opacity:0.58;width:100%;height:100%;}
+.uinfobox{display:none;width:350px;height:250px;position:fixed;z-index:9999;top:50%;left:50%;box-sizing:border-box;margin-left:-175px;margin-top:-140px;background:#fff;border-radius:15px;border:12px solid #106ea9;}
+.uinfobox .uinfotitle{height:32px;line-height:32px;background:#106ea9;color:#fff;text-align:center;font-size:15px;}
+.uinfobox .uinfocenter{height:120px;box-sizing:border-box;width:88%;text-align:center;margin:20px auto 10px;box-sizing:border-box;padding:20px;font-size:15px;color:#333;border:1px solid #eee}
+.uinfobox .uinfocenter .infos{text-align:center;}
+.uinfobox .uinfobtn{width:100%;height:39px;text-align:center;}
+.uinfobox .uinfobtn .btn{height:36px;line-height:36px;width:88%;margin:auto;background:#106ea9;text-align:center;color:#fff;border-radius:10px;cursor:pointer}
+
+.udescribes{width:100%;}
+.desc{font-size:16px;line-height:39px;margin-bottom:10px;}
+
+.infoarea{margin:180px auto;text-align:center;font-size:16px;}
+.infoarea .infos{text-align:center;}
+
+.tsbox{border:1px solid #ccc;color:#ccc;}
+.tsbox .tsrow{height:35px;line-height:35px;border-bottom:1px solid #eee;text-indent:10px;}
+
+#header{height:45px;line-height:45px;text-align:center;background:#106ea9;color:#eee;}
+#header a.back { position:absolute; left:0; top:0; width:30px; height:45px; background:url(../img/back.png) no-repeat center center; background-size:auto 25px;}
+#header .title{text-align:center;font-size:16px;}
+.atitle{text-align:center;font-size:25px;line-height:30px;color:#fff;padding:10px 15px;margin-bottom:50px;}
+.aleft{float:left;color:#ccc;font-size:15px;margin-left:10px;line-height:30px;}
+.aright{float:right;color:#ccc;font-size:15px;margin-right:10px;line-height:30px;}
+.logbox { padding: 10px;}
+.logbox li { margin-bottom:15px;background-color:#fff; }
+.logbox li label.text_label { width:80px; height:40px;float:left;border:none; line-height:40px;border-right:1px solid #eee;background:#ddd; text-indent:10px; font-size:14px; }
+.logbox li input.text_input { width:39%; height:40px;float:left;border:none; background-color:#fff; text-indent:10px; font-size:14px; border-radius:2px;}
+.logbox li select.text_input { width:50%; height:40px;float:left;border:none; background-color:#fff; text-indent:10px; font-size:14px; border-radius:2px;}
+.logbox li textarea.text_input { width:100%; height:120px; padding:10px;border:none; background-color:#fff; font-size:14px; border-radius:2px;box-sizing:border-box;resize:none}
+.logbox li input.button_input { height:42px; border:none; background:#106ea9; color:#fff; font-size:16px; width:100%; border-radius:2px;}
+.logbox li input{outline:none}
+
+
+.cxbox{background:#5084E2;padding:10px;box-sizing:border-box}
+.cxbox .cxrow{background:#fff;width:100%;height:40px;border:1px solid #c9c9c9}
+.cxbox .text_label{ width:80px; height:40px;float:left;border:none; line-height:40px;border-right:1px solid #eee;background:#ddd; text-indent:10px; font-size:14px; }
+.cxbox .text_input { width:39%; height:40px;float:left;border:none; background-color:#fff; text-indent:10px; font-size:14px; border-radius:2px;}
+.cxbox .mbtn { height:42px; border:none;text-align:center; background:#ccc; color:#333; font-size:16px; width:100%; border-radius:2px;}
+
+.home.zzpt { border-bottom:0;}
+.home.zzpt .nav li.last { width:100%; float:left;}
+.home.zzpt .nav li a{ padding-top:100px; }
+.home.zzpt .nav li a.l1 { background:#fff url(../img/l1.png) no-repeat 50% 30%; background-size:70px auto;}
+.home.zzpt .nav li a.l2 { background:#fff url(../img/l2.png) no-repeat 50% 30%; background-size:70px auto;}
+.home.zzpt .nav li a.l3 { background:#fff url(../img/l3.png) no-repeat 50% 30%; background-size:70px auto;}
+.home.zzpt .nav li a.tlist img{padding:5px;width:100%;box-sizing:border-box;}
+
+.home { border-bottom:40px solid transparent;}
+.home .logo { background-color:#106ea9; padding:10px 0 5px 0;}
+.home .logo img{ width:100px;height:100px;border-radius:50%;border:5px solid #f9f9f9}
+.home .logo h2 { padding:5px 0; color:#fff;}
+.home .btn-ty .btn { background-color:#333;}
+.home .nav { padding:5px;}
+.home .nav li { width:50%; float:left;text-align:center;}
+.home .nav li a { display:block; margin:5px; padding-top:100px;color:#333; padding-bottom:20px; border:1px solid #ddd; font-size:14px;}
+.home .user_info { background-color:#fff; border-bottom:1px solid #ddd; height:40px; line-height:40px; font-size:14px;}
+.home .mbtn{width:60px;height:32px;line-height:32px;float:right;border:1px solid #f5f5f5;border-radius:3px;background:#f9f9f9;margin:3px;cursor:pointer}

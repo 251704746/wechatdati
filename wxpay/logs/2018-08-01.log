@@ -1,0 +1,81 @@
+﻿[2018-08-01 15:38:59][debug] error（DID:3）:没有参加答题抽奖或者奖品已经领取
+
+[2018-08-01 15:40:26][debug] error（DID:3）:没有参加答题抽奖或者奖品已经领取
+
+[2018-08-01 15:41:08][debug] error（DID:11）:58
+
+[2018-08-01 15:41:14][debug] error（DID:3）:没有参加答题抽奖或者奖品已经领取
+[2018-08-01 15:53:10][debug] error（DID:12）:58
+[2018-08-01 15:53:15][debug] error（DID:3）:没有参加答题抽奖或者奖品已经领取
+[2018-08-01 15:54:49][debug] error（DID:10）:58
+[2018-08-01 15:54:53][debug] error（DID:10）:58
+[2018-08-01 15:57:53][debug] error（DID:10）:58
+[2018-08-01 15:58:02][debug] error（DID:12）:58
+[2018-08-01 15:58:12][debug] error（DID:10）:58
+[2018-08-01 15:58:45][debug] error（DID:10）:58
+[2018-08-01 16:11:22][debug] error（DID:10）:58
+[2018-08-01 16:13:29][debug] error（DID:11）:58
+[2018-08-01 16:13:35][debug] error（DID:12）:58
+[2018-08-01 16:26:37][debug] error（DID:10）:<xml>
+<return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[参数错误:金额格式有误.]]></return_msg>
+<result_code><![CDATA[FAIL]]></result_code>
+<err_code><![CDATA[PARAM_ERROR]]></err_code>
+<err_code_des><![CDATA[参数错误:金额格式有误.]]></err_code_des>
+</xml>
+[2018-08-01 16:26:42][debug] error（DID:11）:<xml>
+<return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[参数错误:金额格式有误.]]></return_msg>
+<result_code><![CDATA[FAIL]]></result_code>
+<err_code><![CDATA[PARAM_ERROR]]></err_code>
+<err_code_des><![CDATA[参数错误:金额格式有误.]]></err_code_des>
+</xml>
+[2018-08-01 16:29:17][debug] error（DID:10）:<xml>
+<return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[参数错误：输入的商户号有误]]></return_msg>
+<result_code><![CDATA[FAIL]]></result_code>
+<err_code><![CDATA[PARAM_ERROR]]></err_code>
+<err_code_des><![CDATA[参数错误：输入的商户号有误]]></err_code_des>
+</xml>
+[2018-08-01 16:34:19][debug] error（DID:10）:<xml>
+<return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[参数错误：输入的商户号有误]]></return_msg>
+<result_code><![CDATA[FAIL]]></result_code>
+<err_code><![CDATA[PARAM_ERROR]]></err_code>
+<err_code_des><![CDATA[参数错误：输入的商户号有误]]></err_code_des>
+</xml>
+[2018-08-01 16:43:06][debug] error（DID:10）:<xml>
+<return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[参数错误：输入的商户号有误]]></return_msg>
+<result_code><![CDATA[FAIL]]></result_code>
+<err_code><![CDATA[PARAM_ERROR]]></err_code>
+<err_code_des><![CDATA[参数错误：输入的商户号有误]]></err_code_des>
+</xml>
+[2018-08-01 16:45:43][debug] error（DID:10）:<xml>
+<return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[参数错误：输入的商户号有误]]></return_msg>
+<result_code><![CDATA[FAIL]]></result_code>
+<err_code><![CDATA[PARAM_ERROR]]></err_code>
+<err_code_des><![CDATA[参数错误：输入的商户号有误]]></err_code_des>
+</xml>
+[2018-08-01 17:16:35][debug] error（DID:12）:<xml>
+<return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[参数错误：输入的商户号有误]]></return_msg>
+<result_code><![CDATA[FAIL]]></result_code>
+<err_code><![CDATA[PARAM_ERROR]]></err_code>
+<err_code_des><![CDATA[参数错误：输入的商户号有误]]></err_code_des>
+</xml>
+[2018-08-01 17:16:51][debug] error（DID:12）:<xml>
+<return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[参数错误：输入的商户号有误]]></return_msg>
+<result_code><![CDATA[FAIL]]></result_code>
+<err_code><![CDATA[PARAM_ERROR]]></err_code>
+<err_code_des><![CDATA[参数错误：输入的商户号有误]]></err_code_des>
+</xml>
+[2018-08-01 17:18:11][debug] error（DID:10）:<xml>
+<return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[参数错误：输入的商户号有误]]></return_msg>
+<result_code><![CDATA[FAIL]]></result_code>
+<err_code><![CDATA[PARAM_ERROR]]></err_code>
+<err_code_des><![CDATA[参数错误：输入的商户号有误]]></err_code_des>
+</xml>

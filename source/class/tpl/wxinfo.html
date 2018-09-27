@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微信公众号信息</title>
+<link rel="stylesheet" type="text/css" href="{$dir}css/css.css" />
+<script type="text/javascript" src="{$dir}js/jquery.min.js"></script>
+<script type="text/javascript">
+
+function checkvalue()
+{
+	var wxlforce = 0;
+	if($('#wxlforce').prop("checked")){
+		$("#wxforce").val(1);
+	}else{
+		$("#wxforce").val(0);
+	}
+	
+	var wxlname = $("#wxlname").val();
+	var wxlappid = $("#wxlappid").val();
+	var wxpappid = $("#wxpappid").val();
+	var wxlsecret = $("#wxlsecret").val();
+	var wxpsecret = $("#wxpsecret").val();
+	var wxpmchid = $("#wxpmchid").val();
+	var wxltoken = $("#wxltoken").val();
+	var wxlurl = $("#wxlurl").val();
+	var wid = $("#wid").val();
+	var wxpkey = $("#wxpkey").val();
+	
+	var wxpcheck = 0;
+	if($('#wxpcheck').prop("checked")){
+		$("#wxcheck").val(1);
+	}else{
+		$("#wxcheck").val(0);
+	}
+	
+	if(wxlname == ""){
+		showform("订阅号名称不能为空");
+		return false;
+	}
+	if(wxlurl == ""){
+		showform("订阅号关注地址不能为空");
+		return false;
+	}
+	if(wxlappid == ""){
+		showform("订阅号APPID不能为空");
+		return false;
+	}if(wxlsecret == ""){
+		showform("订阅号SECRET不能为空");
+		return false;
+	}if(wxltoken == ""){
+		showform("订阅号TOKEN不能为空");
+		return false;
+	}
+	
+	if(wxpappid == ""){
+		showform("服务号APPID不能为空");
+		return false;
+	}if(wxpsecret == ""){
+		showform("服务号SECRET不能为空");
+		return false;
+	}
+	
+}
+</script>
+</head>
+<body>
+	<div id="pageAll">
+		<div class="pageTop">
+			<div class="page pos">
+				当前位置：首页&nbsp;-&nbsp;系统管理&nbsp;-&nbsp;公众号设置
+			</div>
+		</div>
+		<div class="page ">
+			<form action="index.php" method="post">
+			<input type="hidden" id="mod" name="mod" value="admin"/>
+			<input type="hidden" id="act" name="act" value="action_wxinfo"/>
+			<input type="hidden" id="wid" name="wid" value="{$wxinfo['wid']}"/>
+			<input type="hidden" id="wxforce" name="wxforce" value=""/>
+			<input type="hidden" id="wxcheck" name="wxcheck" value=""/>
+			<div class="bacen">
+				<div class="bbD">
+				     <span class="bcname" style="color:#999;margin-bottom:20px;">
+					 这里填写微信登录时授权的微信公众号信息。这个公众号信息可以与下面微信红包打款的公众号信息一致！
+					 </span></div>
+				<div class="bbD">
+					<span class="bcname" style="width:150px;">是否强制关注：</span><span class="bcvalue" style="width:68%"><input type="checkbox" 
+						 name="wxlforce" id="wxlforce" {if $wxinfo['wxlforce'] eq 1}checked{/if} /> 
+						 <label for="wxlforce">勾选后，用户只能在设置的公众号，回复消息进入活动</label>
+						</span>
+				</div>
+				<div class="bbD">
+					<span class="bcname" style="width:150px;">订阅号名称：</span><span class="bcvalue" style="width:68%"><input type="text" class="input3"
+						 id="wxlname" name="wxlname" value="{$wxinfo['wxlname']}" onfocus="this.style='border:1px solid #27A9E3'" onblur="this.style='border:1px solid #DCDEE0'" /> </span>
+				</div>
+				<div class="bbD">
+					<span class="bcname" style="width:150px;">关注地址：</span><span class="bcvalue" style="width:68%"><input type="text" class="input3"
+						 id="wxlurl" name="wxlurl" value="{$wxinfo['wxlurl']}" onfocus="this.style='border:1px solid #27A9E3'" onblur="this.style='border:1px solid #DCDEE0'" /> </span>
+				</div>
+				<div class="bbD">
+					<span class="bcname" style="width:150px;">订阅号Appid：</span><span class="bcvalue" style="width:68%"><input type="text" class="input3"
+						 id="wxlappid" name="wxlappid" value="{$wxinfo['wxlappid']}" onfocus="this.style='border:1px solid #27A9E3'" onblur="this.style='border:1px solid #DCDEE0'" /> </span>
+				</div>
+				<div class="bbD">
+					<span class="bcname" style="width:150px;">订阅号AppSecret：</span><span class="bcvalue" style="width:68%"><input type="password" class="input3"
+						 id="wxlsecret" name="wxlsecret" value="{$wxinfo['wxlsecret']}"  onfocus="this.style='border:1px solid #27A9E3'" onblur="this.style='border:1px solid #DCDEE0'" /> </span>
+				</div>
+				<div class="bbD">
+					<span class="bcname" style="width:150px;">订阅号Token：</span><span class="bcvalue" style="width:68%"><input type="password" class="input3"
+						 id="wxltoken" name="wxltoken" value="{$wxinfo['wxltoken']}"  onfocus="this.style='border:1px solid #27A9E3'" onblur="this.style='border:1px solid #DCDEE0'" /> </span>
+				</div>
+				<div class="bbD">
+				     <span class="bcname" style="color:#999;margin-bottom:20px;">
+					 下面填写微信红包打款的微信公众号信息及其绑定的微信商户号信息。下面商户号的信息尽在需要设置微信红包直接打款的时候填写。
+					 </span></div>
+				<div class="bbD">
+					<span class="bcname" style="width:150px;">服务号Appid：</span><span class="bcvalue" style="width:68%"><input type="text" class="input3"
+						 id="wxpappid" name="wxpappid" value="{$wxinfo['wxpappid']}" onfocus="this.style='border:1px solid #27A9E3'" onblur="this.style='border:1px solid #DCDEE0'" /> </span>
+				</div>
+				<div class="bbD">
+					<span class="bcname" style="width:150px;">服务号AppSecret：</span><span class="bcvalue" style="width:68%"><input type="password" class="input3"
+						 id="wxpsecret" name="wxpsecret" value="{$wxinfo['wxpsecret']}"  onfocus="this.style='border:1px solid #27A9E3'" onblur="this.style='border:1px solid #DCDEE0'" /> </span>
+				</div>
+				<div class="bbD">
+					<span class="bcname" style="width:150px;">商户MCHID：</span><span class="bcvalue" style="width:68%"><input type="text" class="input3" 
+						id="wxpmchid" name="wxpmchid" value="{$wxinfo['wxpmchid']}"  onfocus="this.style='border:1px solid #27A9E3'" onblur="this.style='border:1px solid #DCDEE0'"/> </span>
+				</div>
+				<div class="bbD">
+					<span class="bcname" style="width:150px;">商户秘钥key：</span><span class="bcvalue" style="width:68%"><input type="password" class="input3" 
+						id="wxpkey" name="wxpkey" value="{$wxinfo['wxpkey']}" onfocus="this.style='border:1px solid #27A9E3'" onblur="this.style='border:1px solid #DCDEE0'"/> </span>
+				</div>
+				
+				<div class="bbD">
+					<span class="bcname" style="width:150px;">强制校验真实姓名：</span><span class="bcvalue" style="width:68%"><input type="checkbox" 
+						 name="wxpcheck" id="wxpcheck" {if $wxinfo['wxpcheck'] eq 1}checked{/if} /> 
+						<label for="wxpcheck"> 勾选后，发红包时强制校验真实姓名</label>
+						</span>
+				</div>
+				
+				<div class="bbD">
+				     <span class="bcname" style="color:#999;margin-bottom:20px;">完成设置后，还需微信商户平台下载证书，上传至 pay/cert 目录下。具体配置请查看微信支付配置文档！</span></div>
+					 
+				<input type="hidden" id="wid" value="{$wxinfo['wid']}"/>
+				<div class="bbD">
+					<p class="bbDP">
+						<input type='submit' class="btn_ok btn_yes" onclick="return checkvalue()" value="提交">
+					</p>
+				</div>
+			  </div>
+
+			</form>
+		</div>
+	</div>
+{include file="info.html"}
+</body>
+
+</html>
